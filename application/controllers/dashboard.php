@@ -6,6 +6,7 @@ class dashboard extends CI_Controller {
     $this->load->helper('form');
 
     $this->load->database();
+    $this->session->sess_destroy();
     $this->load->view('home');
 
   }
