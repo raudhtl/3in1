@@ -21,11 +21,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="<?=base_url();?>assets/css/styles.css" rel="stylesheet">
 <!-- animation-effect -->
 <link href="<?=base_url();?>assets/css/animate.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.css"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.css"></script>
 <script src="<?=base_url();?>assets/js/wow.min.js"></script>
 <script>
  new WOW().init();
 </script>
 <!-- //animation-effect -->
+
+<script>
+    $(document).ready(function() {
+        // Untuk sunting
+        $('#edit-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#alamat').html(div.data('alamat'));
+            modal.find('#pekerjaan').attr("value",div.data('pekerjaan'));
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#yModal').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal          = $(this)
+            modal.find('#nomor_meja').attr("value",div.data('nomor_meja'));
+        });
+    });
+</script>
 
 </head>
 <body>
@@ -42,13 +72,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="menu.html">Menu</a></li>
 					</ul>
 				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
 		</div>
 	<div class="clearfix"></div>
 	</div>
@@ -71,24 +94,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="menu-bottom animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
         <?php
         foreach($barang as $b){
+        $pilihan=$b->nomor_meja;
         ?>
         <div class="col-md-4 menu-bottom1">
-          <form action="Pilih_meja/pilih" method="post">
           <div class="btm-right">
-              <button type="submit" value="<?php echo $b->nomor_meja?>" name ="pilihan" style= "height:380px;
+              <button type="submit" data-toggle="modal" data-target="#yModal" data-nomor_meja="<?php echo $b->nomor_meja?>" name="pilihan" style= "height:380px;
                   width:100%;
                   background-position: center;
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url() . 'assets/images/'.$b->gambar?>')"
-              <?php if($b->status == 'Booked'){?>
-              disabled <?php }?>><br>
-              <div class="captn">
-                <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
-                <p>Status : <?php echo $b->status?></p>
-              </div>
+                  <?php if($b->status == 'Booked'){?>
+                  disabled <?php }?>> <br>
+                  <div class="captn">
+                    <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
+                    <p>Status : <?php echo $b->status?></p>
+                  </div>
+                </button>
           </div>
-        </form>
       </div>
 
       <?php
@@ -97,10 +120,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <br><br>
       <?php }
       } ?>
-
 			</div>
+      <!-- Modal -->
+      <div id ="yModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <!-- konten modal-->
+          <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Masukkan Password</h4>
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+              <form method="post" action="<?php echo base_url('index.php/Pilih_meja/pilih'); ?>" >
+                <div class="form-group"  >
+                  <label for="pwd">Password</label>
+                  <input type="password" class="form-control"  name="password">
+                </div>
+                <div class="form-group"  >
+                  <input type="hidden" id=nomor_meja class="form-control" name="pilihan">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info btn-block" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 		</div>
 	</div>
+
 <!--footer-->
 	<div class="footer">
 		<div class="container">

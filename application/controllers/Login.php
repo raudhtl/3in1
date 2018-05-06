@@ -37,7 +37,7 @@ class Login extends CI_Controller{
 
 		}
 	}else{
-			echo $this->session->set_flashdata('msgg', validation_errors());
+			echo $this->session->set_flashdata('msg', validation_errors());
 			redirect('Login');
 	}
 

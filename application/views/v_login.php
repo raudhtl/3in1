@@ -21,23 +21,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- animation-effect -->
 <link href="<?=base_url();?>assets/css/animate.min.css" rel="stylesheet">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="<?=base_url();?>assets/login/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
+
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/vendor/daterangepicker/daterangepicker.css">
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/css/util.css">
   <link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/login/css/main.css">
@@ -114,8 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Info!</strong><?php echo $this->session->flashdata('msg')?>
                   </div>
-
-                <?php endif; ?>
+        <?php endif; ?>
         <div class="container-login100-form-btn m-t-17">
           <button type ="submit" class="login100-form-btn">
             Sign In

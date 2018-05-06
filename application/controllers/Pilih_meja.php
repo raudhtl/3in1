@@ -14,17 +14,40 @@ class Pilih_meja extends CI_Controller{
       $this->load->view('v_koki_pilih_Meja', $data);
     }
 		else{
-      $this->load->view('v_pengunjung_pilih_Meja', $data);
+      $this->load->view('v_pengunjung_pilih_meja', $data);
     }
   }
 
   function pilih (){
-    $pilihan = $this->input->post('pilihan');
-    $this->load->model('M_pilihmeja');
-		$this->M_pilihmeja->setStatus($pilihan);
-    $this->session->set_userdata('no_meja','$pilihan');
+    $this->form_validation->set_rules('password', 'Password', 'required');
+    if($this->form_validation->run() != false){
+      $password=$this->input->post('password');
+      $pilihan = $this->input->post('pilihan');
+
+      $this->load->model('M_pilihmeja');
+  		$cek_user = $this->M_pilihmeja->cekPassword($pilihan, $password);
+      $data = $cek_user->row_array();
+      if (isset($data) && count ($data) >0){
+          $this->M_pilihmeja->setStatus($pilihan);
+          $this->session->set_userdata('no_meja','$pilihan');
+  				redirect('Pilih_meja');
+  		}
+      else {
+  				$url=base_url();
+      		echo $this->session->set_flashdata('message','Username Atau Password Salah');
+  				echo $pilihan;
+  		}
+    }
+    else{
+  			echo $this->session->set_flashdata('msg', validation_errors());
+  			redirect('Login');
+  	}
+
   }
-
-
+  function logout (){
+  	$this->session->sess_destroy();
+  	$url=base_url('');
+  	redirect('Home');
+  }
 }
 ?>
