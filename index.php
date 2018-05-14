@@ -116,6 +116,7 @@ switch (ENVIRONMENT)
  */
 	$application_folder = 'application';
 
+
 /*
  *---------------------------------------------------------------
  * VIEW DIRECTORY NAME
