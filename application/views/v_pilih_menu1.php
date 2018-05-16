@@ -33,37 +33,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- //animation-effect -->
 
-<script>
-    $(document).ready(function() {
-        // Untuk sunting
-        $('#edit-data').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal          = $(this)
 
-            // Isi nilai pada field
-            modal.find('#id').attr("value",div.data('id'));
-            modal.find('#nama').attr("value",div.data('nama'));
-            modal.find('#alamat').html(div.data('alamat'));
-            modal.find('#pekerjaan').attr("value",div.data('pekerjaan'));
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#yModal').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal          = $(this)
-            modal.find('#nomor_meja').attr("value",div.data('nomor_meja'));
-        });
-    });
-</script>
 
 </head>
 <body>
 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="dashboard"><span>3IN1</span></a></h1>
+			<h1><a href="dashboard"><span>C</span><img src="<?=base_url();?>assets/images/oo.png" alt=""><img src="<?=base_url();?>assets/images/oo.png" alt="">kery</a></h1>
 		</div>
 		<div class="nav-icon">
 			<a href="#" class="navicon"></a>
@@ -93,65 +70,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 			<div class="menu-bottom animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+        <form role="form" id="formfield" method="post"  enctype="multipart/form-data" onsubmit="return validateForm();">
+          <input type="hidden" name="action" value="add_form" />
         <?php
+        $loop=0;
         foreach($barang as $b){
-        $pilihan=$b->nomor_meja;
+        $harga=number_format($b->harga,0,",",".");
+
         ?>
         <div class="col-md-4 menu-bottom1">
           <div class="btm-right">
-              <button type="submit" data-toggle="modal" data-target="#yModal" data-nomor_meja="<?php echo $b->nomor_meja?>" name="pilihan" style= "height:380px;
+              <button type="button" data-toggle="modal" data-target="#yModal" data-nomor_meja="<?php echo $b->nama_menu?>" name="pilihan" style= "height:330px;
                   width:100%;
                   background-position: center;
                   margin-bottom:20px;
                   background-size:350px;
-                  background-image:url('<?=base_url() . 'assets/images/'.$b->gambar?>')"
-                  <?php if($b->status == 'Booked'){?>
-                  disabled <?php }?>> <br>
+                  background-image:url('<?=base_url() . 'assets/images/'.$b->gambar?>')"> <br>
                   <div class="captn">
-                    <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
-                    <p>Status : <?php echo $b->status?></p>
+                    <h4><?php echo $b->nama_menu?></h4><br>
+                    <p>Harga : <?php echo $harga?></p>
                   </div>
                 </button>
           </div>
-      </div>
 
+          <div class="pesan" style="background: linear-gradient(#97824b,  #ddd4bb); ">
+            <form role="form" id="formfield" action="<?php echo base_url('index.php/Pilih_meja/pilih'); ?>" method="post"  enctype="multipart/form-data" onsubmit="return validateForm();">
+              <input type="hidden" name="action" value="add_form" />
+                <div class="form-group">
+                  <input type="number" disabled value=null id="<?php echo "jumlah".$loop?>" data-target="#yModal" name="jumlahh"><br>
+                </div>
+                <div class="form-group">
+                  <input type="hidden" value= 1 id="<?php echo "menu".$loop?>" data-target="#yModal" name="jumlahh"><br>
+                </div>
+                <div class="form-group">
+                <div class="checkbox">
+                  <label><input type="checkbox" onclick="myFunction('<?php echo "jumlah".$loop?>', '<?php echo "menu".$loop?>', '<?php echo $b->nama_menu?>')">Pilih</label>
+                </div>
+                </div>
+
+          </div>
+      </div>
       <?php
-      if ( $b->nomor_meja == 3 ||  $b->nomor_meja == 6){ ?>
+      $loop++;
+      if ( $loop == 3 ||  $loop == 6){ ?>
         <div class="clearfix"> </div>
         <br><br>
       <?php }
       } ?>
+      <input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#yModal" class="btn btn-default" />
+
+    </form>
+
+
 			</div>
       <!-- Modal -->
-      <div id ="yModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-          <!-- konten modal-->
-          <div class="modal-content">
-            <!-- heading modal -->
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Masukkan Password</h4>
-            </div>
-            <!-- body modal -->
-            <div class="modal-body">
-              <form method="post" action="<?php echo base_url('index.php/Pilih_meja/pilih'); ?>" >
-                <div class="form-group"  >
-                  <label for="pwd">Password</label>
-                  <input type="password" class="form-control"  name="password">
-                </div>
-                <div class="form-group"  >
-                  <input type="hidden" id=nomor_meja class="form-control" name="pilihan">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-info btn-block" type="submit">Submit</button>
-              </form>
-            </div>
+      <div class="modal fade" id="yModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirm Submit</h4>
+                  </div>
+                  <div class="modal-body">
+                          <?php
+                          $i=0;
+                          for($i=0; $i<2; $i++){ ?>
+                          <form method="post" class="form-inline" action="<?php echo base_url('index.php/PilihMenu/pilih'); ?>" >
+                          <div class="form-group"  >
+                            <input type="text" id="<?php echo "m".$i?>" class="form-control" name="<?php echo "menu".$i?>">
+                          </div>
+                          <div class="form-group"  >
+                            <input type="number" id="<?php echo "j".$i?>" class="form-control" name="<?php echo "jumlah".$i?>">
+                          </div>
+                            <div class="clearfix"> </div>
+                        <?php  }?>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-info btn-block" type="submit">Submit</button>
+                    </form>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-		</div>
 	</div>
+  <script>
+  $(document).ready(function() {
+    $('#yModal').on('show.bs.modal', function (event) {
+      var div = $(event.relatedTarget)
+      var modal          = $(this)
+      var y
+        for(x=0, y=0; x<9; x=x+1, y=y+1){
+
+          var i = $('#menu'+x).val();
+          if( i != 1){
+          modal.find('#j'+y).attr("value", $('#jumlah'+x).val());
+          modal.find('#m'+y).attr("value", $('#menu'+x).val());
+        }
+        else{
+          y=y-1;
+        }
+     }
+    });
+});
+  </script>
+  <script>
+  function myFunction(param1, param2, param3) {
+    document.getElementById(param1).disabled=false;
+     document.getElementById(param2).value=param3;
+  }
+</script>
 
 <!--footer-->
 	<div class="footer">

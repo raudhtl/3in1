@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>3IN1</title>
+	<title>Reservation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,8 +50,6 @@
 	}
 	</style>
 
-
-
 <!--===============================================================================================-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 <!--===============================================================================================-->
@@ -84,24 +82,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-	function tampil_alamat(param){
-
-		var i;
-			for(var x=1; x<=10; x++){
-
-				document.getElementById("templatealamat".concat(x)).style.visibility = "hidden";
-
-				}
-			for(i=1; i<=param; i=i+1){
-
-				document.getElementById("templatealamat".concat(i)).style.visibility = "visible";
-			}
-		}
-		var windo = param;
-		$.post('Identitas.php', {variable: windo});
-</script>
-
 
 	<style type="text/css">
   	body{
@@ -116,17 +96,14 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-  table{margin:2em 0 0 0; border:1px solid #eee;width:100%; border-collapse: separate;border-spacing:0;}
-  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;}
-  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;}
-  table tr.total td{font-size:1.5em;}
+
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
 
 
 
-<body onload="tampil_alamat(0)">
+<body >
 	 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
@@ -138,9 +115,6 @@
 					<ul class="toggle-menu">
 						<li><a class="active" href="index.html">Home</a></li>
 						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="blog.html">Blog</a></li>
-						<li><a  href="typo.html">Codes</a></li>
-						<li><a  href="events.html">Events</a></li>
 						<li><a  href="contact.html">Contact</a></li>
 					</ul>
 				</div>
@@ -152,6 +126,12 @@
 			});
 			</script>
 		</div>
+		<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
+				<ul class="dropdown-menu" style="margin-top: 50px;">
+					<li ><a href="Login/logout">Logout</a></li>
+				</ul>
+		</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -160,293 +140,89 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 p-b-30">
-					<div class="t-center">
-						<span class="tit2 t-center">
-							Identitas Pelanggan
-						</span>
-
-						<h3 class="tit3 t-center m-b-35 m-t-2">
-							3 in 1
-						</h3>
+					<div class="t-left">
+						<span class="tit2 t-left">
+							No Meja : <?php echo $this->session->userdata('meja_bayar');?>
+						</span><br><br>
 					</div>
+          <div class="wrap-inputname size12 bo2 bo-rad-10" style="padding-right:10px;height:auto;">
+						<?php foreach ($nama as $name) { ?>
+
+            <div class="row">
+              <div class="col-md-8   p-t-30">
+                  <span class="txt5 t-left p-l-20" >
+                    <i class ="fa fa-odnoklassniki">Nama : <?php echo $name['nama']?></i>
+                  </span><br><br>
+                      <div class="table-responsive" >
+                      <table class="table" >
+                          <tr>
+                            <th style="text-align:right;">#</th>
+                            <th style="text-align:right;">Menu</th>
+                            <th style="text-align:right;">Jumlah</th>
+                            <th style="text-align:right;">Harga</th>
+                          </tr>
+
+                        <tbody>
+                          <?php
+
+														$k =$this->session->userdata('i');
+														$_SESSION["sum"] = 0;
+															for($i=1; $i<$k; $i++){
+																	 $sum = $base[$name['nama']]['hargaa'.$i]+$_SESSION["sum"];
+																	 unset($_SESSION["sum"]);
+																	 $_SESSION["sum"] = $sum;
+																  $harga=number_format($_SESSION["sum"],0,",",".");
+
+															?>
+                          <tr>
+                            <td style="text-align:right;"><?php echo $i;?></td>
+                            <td style="text-align:right;"><?php echo $base[$name['nama']]['nama_menuu'.$i];?></td>
+                            <td style="text-align:right;"><?php echo $base[$name['nama']]['jumlahh'.$i];?></td>
+                            <td style="text-align:right;"><?php echo $base[$name['nama']]['hargaa'.$i];?></td>
+                          </tr>
+													<?php
+												}
+													 ?>
+                          <tr><td></td>
+                              <td style="text-align:right;">Total</td>
+                              <td style="text-align:right;"></td>
+															<td style="text-align:right;"><?php echo "Rp. ".$harga?></td>
+                              <td></td>
+                          </tr>
+                        </tbody>
+
+                      </table>
 
 
-						<div class="row">
-							<div class="col-md-4">
-
-							</div>
-
-							<div class="col-md-4">
-								<!-- People -->
-								<span class="txt9">
-									People
-								</span>
-                <?php if ($this->session->flashdata('msg_sama') == TRUE) : ?>
-                          <div class="alert alert-danger fade in" style="margin-top:15px;">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Info!</strong><?php echo $this->session->flashdata('msg_sama')?>
-                          </div>
-                <?php endif; ?>
-                <?php if ($this->session->flashdata('msg_id') == TRUE) : ?>
-                          <div class="alert alert-danger fade in" style="margin-top:15px;">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Info!</strong><?php echo $this->session->flashdata('msg_id')?>
-                          </div>
-                <?php endif; ?>
-
-								<div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<!-- Select2 -->
-									<select class="selection-1" name="people" onchange="tampil_alamat(this.value)">
-										<option value="0">0 person</option>
-										<option value="1">1 person</option>
-										<option value="2">2 people</option>
-										<option value="3">3 people</option>
-										<option value="4">4 people</option>
-										<option value="5">5 people</option>
-										<option value="6">6 people</option>
-										<option value="7">7 people</option>
-										<option value="8">8 people</option>
-										<option value="9">9 people</option>
-										<option value="10">10 people</option>
-									</select>
-								</div>
-
-							</div>
-
-							<div class="col-md-4">
-								<!-- People -->
-
-							</div>
-						</div>
-              <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat1" style="visibility: hidden;">
-
-							<div class="col-md-6">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<!-- Pesan -->
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-								</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <form action="Pembayaran/bayar" method="post"  >
+                <div class="form-group">
+                  <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23  m-t-74">
+                    <input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="uang" placeholder="Masukkan Uang anda" >
+                  </div>
+                </div>
+							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
 							</div>
             </form>
-
-
-
 						</div>
-            <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat2" style="visibility: hidden;">
-							<div class="col-md-6">
-								<!-- Name -->
+          </div>
+				<?php } ?>
 
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-								</div>
-							</div>
-            </form>
-
-
-
+			</div><br><br>
+						<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23 float-r" style="height:50px; width:370px; background-color: #353535; font-weight:500;">
+								 <a href="Pilih_meja"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
 						</div>
-                        <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat3" style="visibility: hidden;">
 
-							<div class="col-md-6">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-								</div>
-							</div>
-            </form>
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat4" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-      </form>
-
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat5" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat6" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-					</div>
-				</div>
-
-
+	</div>
 </div>
-
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat7" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat8" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat9" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat10" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
-
-
-
-			<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
-				<!-- Button3 -->
-				<a href="Konfirmasi"><button type="button" class="btn3 flex-c-m size13 txt11 trans-0-4">
-					Selesai
-				</button></a>
-			</div>
-		</div>
-	</div>
 </div>
 	</section>
 
 	<!-- Container Selection1 -->
 	<div id="dropDownSelect1"></div>
-
-
 	<!--footer-->
 		<div class="footer" id="footer-down">
 			<div class="container">
@@ -481,6 +257,15 @@
 			</div>
 		</div>
 		<!--//footer-->
+		<?php function harga ($nama, $jumlah, $hargaa){
+		    $total = $jumlah*$hargaa;
+		    $sum = $total + $_SESSION["sum"];
+		    unset($_SESSION["sum"]);
+		    $_SESSION["sum"] = "$sum";
+		    return $total;
+		}
+
+		?>
 
 
 <!--===============================================================================================-->

@@ -1,4 +1,10 @@
 
+  <!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,47 +22,21 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!---->
+<link rel="stylesheet" href="<?=base_url();?>assets/font-awesome/web-fonts-with-css/css/fontawesome-all.css" />
 <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 <link href="<?=base_url();?>assets/css/styles.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></script>
 <!-- animation-effect -->
 <link href="<?=base_url();?>assets/css/animate.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.css"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.css"></script>
-
 <script src="<?=base_url();?>assets/js/wow.min.js"></script>
 <script>
  new WOW().init();
 </script>
 <!-- //animation-effect -->
-
-<script>
-    $(document).ready(function() {
-        // Untuk sunting
-        $('#edit-data').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal          = $(this)
-
-            // Isi nilai pada field
-            modal.find('#id').attr("value",div.data('id'));
-            modal.find('#nama').attr("value",div.data('nama'));
-            modal.find('#alamat').html(div.data('alamat'));
-            modal.find('#pekerjaan').attr("value",div.data('pekerjaan'));
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#yModal').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal          = $(this)
-            modal.find('#nomor_meja').attr("value",div.data('nomor_meja'));
-        });
-    });
-</script>
 
 </head>
 <body>
@@ -65,15 +45,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
 			<h1><a href="dashboard"><span>3IN1</span></a></h1>
 		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a  href="index.html">Home</a></li>
-						<li><a href="menu.html">Menu</a></li>
-					</ul>
-				</div>
-		</div>
+    <div class="nav-icon" style="padding-top:25px;">
+      <a href="#" class="navicon"></a>
+        <div class="toggle">
+          <ul class="toggle-menu">
+            <li><a  href="dashboard">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+          </ul>
+        </div>
+      <script>
+      $('.navicon').on('click', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('navicon--active');
+        $('.toggle').toggleClass('toggle--active');
+      });
+      </script>
+    </div>
+    <div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
+        <ul class="dropdown-menu" style="margin-top: 50px;">
+          <li ><a href="Login/logout">Logout</a></li>
+        </ul>
+    </div>
+
 	<div class="clearfix"></div>
 	</div>
 	<!-- start search-->
@@ -86,33 +80,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 menu-left animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
 					<h3>Pilih Meja</h3>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
-					<span>Anda Nyaman Kami Senang</span>
+					<span>Pilih Meja Yang Akan Disiapkan Makanan</span>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 
 
 			<div class="menu-bottom animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+        <div class="row">
+        <div class="col-md-3 menu-bottom1">
+          <form action="Pilih_meja/pilih_koki" method="post">
+          <div class="btm-right">
+              <button type="submit" name ="pilihan" style= "height:280px;
+                  width:100%;
+                  background-position: center;
+                  margin-bottom:20px;
+                  background-size:350px;
+                  background-image:url('<?=base_url()?>assets/images/koki.jpg')"
+                  <?php if($this->session->userdata('koki') != TRUE){?>
+                  disabled <?php }?>><br>
+                <div class="captn">
+                  <h4>Koki</h4><br>
+                  <p>Klik Untuk Menghilangkan Notifikasi</p>
+                </div>
+              </div>
+            </form>
+          </div>
+      <div class="col-md-9 menu-bottom1">
         <?php
         foreach($barang as $b){
-        $pilihan=$b->nomor_meja;
         ?>
         <div class="col-md-4 menu-bottom1">
+          <form action="Pilih_meja/pilih_koki" method="post">
           <div class="btm-right">
-              <button type="submit" data-toggle="modal" data-target="#yModal" data-nomor_meja="<?php echo $b->nomor_meja?>" name="pilihan" style= "height:380px;
+              <button type="submit" value="<?php echo $b->nomor_meja?>" name ="pilihan" style= "height:280px;
                   width:100%;
                   background-position: center;
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url() . 'assets/images/'.$b->gambar?>')"
-                  <?php if($b->status == 'Booked'){?>
-                  disabled <?php }?>> <br>
-                  <div class="captn">
-                    <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
-                    <p>Status : <?php echo $b->status?></p>
-                  </div>
-                </button>
+              <?php 
+              if($this->session->userdata($b->nomor_meja) != TRUE){?>
+              disabled <?php }?>><br>
+              <div class="captn">
+                <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
+                <p>Klik Untuk Menghilangkan Notifikasi</p>
+              </div>
           </div>
+        </form>
       </div>
 
       <?php
@@ -121,38 +136,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <br><br>
       <?php }
       } ?>
-			</div>
-      <!-- Modal -->
-      <div id ="yModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-          <!-- konten modal-->
-          <div class="modal-content">
-            <!-- heading modal -->
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Masukkan Password</h4>
-            </div>
-            <!-- body modal -->
-            <div class="modal-body">
-              <form method="post" action="<?php echo base_url('index.php/Pilih_meja/pilih'); ?>" >
-                <div class="form-group"  >
-                  <label for="pwd">Password</label>
-                  <input type="password" class="form-control"  name="password">
-                </div>
-                <div class="form-group"  >
-                  <input type="hidden" id=nomor_meja class="form-control" name="pilihan">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-info btn-block" type="submit">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-		</div>
-	</div>
 
+			</div>
+		</div>
+    </div>
+    </div>
+	</div>
 <!--footer-->
 	<div class="footer">
 		<div class="container">

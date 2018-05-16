@@ -54,10 +54,5 @@ class Pilih_meja extends CI_Controller{
       $this->session->set_userdata('meja_bayar', $pilihan);
       redirect('Koki');
   }
-  function logout (){
-  	$this->session->sess_destroy();
-  	$url=base_url('');
-  	redirect('Home');
-  }
 }
 ?>
