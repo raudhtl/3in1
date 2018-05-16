@@ -25,7 +25,7 @@ class Konfirmasi extends CI_Controller {
       $hasil2 = $pembayaran->row_array();
       $this->M_konfirmasi->insert_pesanan($hasil2);
       $this->session->set_userdata('notif', TRUE);
-      $this->session->set_userdata($no_meja, TRUE);
+      $this->session->set_userdata('no_meja'.$no_meja, TRUE);
       redirect('dashboard');
     }
   }

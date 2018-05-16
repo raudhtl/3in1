@@ -88,10 +88,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="menu-bottom animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
         <div class="row">
-        <div class="col-md-3 menu-bottom1">
-          <form action="Pilih_meja/pilih_koki" method="post">
+        <div class="col-md-3 ">
+        <div class="menu-bottom1">
+          <form action="Notifikasi/remove" method="post">
           <div class="btm-right">
-              <button type="submit" name ="pilihan" style= "height:280px;
+              <button type="submit" value="koki" name ="pilihan" style= "height:280px;
                   width:100%;
                   background-position: center;
                   margin-bottom:20px;
@@ -102,16 +103,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="captn">
                   <h4>Koki</h4><br>
                   <p>Klik Untuk Menghilangkan Notifikasi</p>
-                </div>
+                </div></button>
               </div>
             </form>
           </div>
+          <?php
+          $url = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
+          ?>
+          <a href="<?=$url?>" class="btn btn-info" style="margin-top:50px; width:260px; background-color:#40c9b4; Height:50px; font-size:25px;">Selesai</a>
+        </div>
       <div class="col-md-9 menu-bottom1">
         <?php
         foreach($barang as $b){
         ?>
         <div class="col-md-4 menu-bottom1">
-          <form action="Pilih_meja/pilih_koki" method="post">
+          <form action="Notifikasi/remove" method="post">
           <div class="btm-right">
               <button type="submit" value="<?php echo $b->nomor_meja?>" name ="pilihan" style= "height:280px;
                   width:100%;
@@ -119,8 +125,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url() . 'assets/images/'.$b->gambar?>')"
-              <?php 
-              if($this->session->userdata($b->nomor_meja) != TRUE){?>
+              <?php
+              $no_meja = $b->nomor_meja;
+              if($this->session->userdata('no_meja'. $b->nomor_meja) != TRUE){?>
               disabled <?php }?>><br>
               <div class="captn">
                 <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>

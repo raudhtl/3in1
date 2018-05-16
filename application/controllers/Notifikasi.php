@@ -23,5 +23,16 @@ class Notifikasi extends CI_Controller {
     $this->load->model('M_pilihmeja');
     $data['barang']= $this->M_pilihmeja->lihatStatus();
 		$this->load->view('v_notif',$data);
+
+	}
+	public function remove(){
+		$pilihan=$this->input->post('pilihan');
+		$this->session->unset_userdata('no_meja'.$pilihan);
+		for($i=1 ; $i<=9; $i++){
+			if($this->session->userdata('no_meja'.$i) != TRUE && $i==9){
+					$this->session->unset_userdata('notif');
+			}
+		}
+		redirect('Notifikasi');
 	}
 }
