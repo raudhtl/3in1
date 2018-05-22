@@ -248,7 +248,7 @@ input[type=checkbox]:checked + label {
 	</div>
 	<!-- Lables for the controls -->
 	<div id="timer_controls">
-		<label for="start">Start</label>
+		<label for="start">Mulai</label>
 		<label for="stop">Stop</label>
 		<label for="reset">Reset</label>
 	</div>
