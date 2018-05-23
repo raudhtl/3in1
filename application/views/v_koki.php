@@ -1,5 +1,4 @@
-
-  <!--A Design by W3layouts
+<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -8,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cookery A Food Category Flat Bootstrap Responsive Website Template | Menu :: w3layouts</title>
+<title>3in1</title>
 <link href="<?=base_url();?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?=base_url();?>assets/js/jquery.min.js"></script>
@@ -176,7 +175,7 @@ input[type=checkbox]:checked + label {
 						<li><a   href="blog.html">Blog</a></li>
 						<li><a class="active" href="typo.html">Codes</a></li>
 						<li><a  href="events.html">Events</a></li>
-						<li><a  href="contact.html">Contact</a></li>
+
 					</ul>
 				</div>
 			<script>
@@ -248,7 +247,7 @@ input[type=checkbox]:checked + label {
 	</div>
 	<!-- Lables for the controls -->
 	<div id="timer_controls">
-		<label for="start">Start</label>
+		<label for="start">Mulai</label>
 		<label for="stop">Stop</label>
 		<label for="reset">Reset</label>
 	</div>
@@ -335,3 +334,4 @@ input[type=checkbox]:checked + label {
 	<!--//footer-->
 </body>
 </html>
+>>>>>>> refs/remotes/origin/tambahpesanan
