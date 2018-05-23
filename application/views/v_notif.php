@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <?php
           $url = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
           ?>
-          <a href="<?=$url?>" class="btn btn-info" style="margin-top:50px; width:260px; background-color:#40c9b4; Height:50px; font-size:25px;">Selesai</a>
+          <a href="Pilih_meja" class="btn btn-info" style="margin-top:50px; width:260px; background-color:#40c9b4; Height:50px; font-size:25px;">Selesai</a>
         </div>
       <div class="col-md-9 menu-bottom1">
         <?php
