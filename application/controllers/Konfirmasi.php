@@ -29,5 +29,5 @@ class Konfirmasi extends CI_Controller {
       redirect('dashboard');
     }
   }
-}
+
  ?>
