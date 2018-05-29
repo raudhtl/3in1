@@ -25,7 +25,7 @@ class Pilih_meja extends CI_Controller{
       $pilihan = $this->input->post('pilihan');
 
       $this->load->model('M_pilihmeja');
-  		$cek_user = $this->M_pilihmeja->cekPassword($pilihan, $password);
+  	  $cek_user = $this->M_pilihmeja->cekPassword($pilihan, $password);
       $data = $cek_user->row_array();
       if (isset($data) && count ($data) >0){
           $this->M_pilihmeja->setStatus($pilihan);
