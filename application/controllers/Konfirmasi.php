@@ -1,33 +1,39 @@
 <?php
-class Konfirmasi extends CI_Controller {
-  function index(){
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-    $this->load->helper("url");
-    $this->load->helper('form');
+class Notifikasi extends CI_Controller {
 
-    $this->load->database();
-    $this->load->view('v_konfirmasi');
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+    $this->load->model('M_pilihmeja');
+    $data['barang']= $this->M_pilihmeja->lihatStatus();
+		$this->load->view('v_notif',$data);
 
-  }
-  function pilih(){
-    $pilihan = $this->input->post('pilih');
-    $no_meja = $this->session->userdata('no_meja');
-    echo $pilihan;
-    if($pilihan == 1){
-      redirect ('Identitas');
-    }
-    else{
-      $this->load->model('M_konfirmasi');
-  	  $jumlah = $this->M_konfirmasi->jumlah($no_meja);
-      $hasil = $jumlah->num_rows();
-      $this->M_konfirmasi->insert($hasil, $no_meja);
-      $pembayaran = $this->M_konfirmasi->insert_pembayaran($no_meja);
-      $hasil2 = $pembayaran->row_array();
-      $this->M_konfirmasi->insert_pesanan($hasil2);
-      $this->session->set_userdata('notif', TRUE);
-      $this->session->set_userdata('no_meja'.$no_meja, TRUE);
-      redirect('dashboard');
-    }
-  }
+	}
+	public function remove(){
+		$pilihan=$this->input->post('pilihan');
+		$this->session->unset_userdata('no_meja'.$pilihan);
+		$this->session->unset_userdata('koki');
+		for($i=1 ; $i<=9; $i++){
+			if($this->session->userdata('no_meja'.$i) != TRUE && $i==9){
+					$this->session->unset_userdata('notif');
+			}
+		}
+		redirect('Notifikasi');
+	}
 }
- ?>
