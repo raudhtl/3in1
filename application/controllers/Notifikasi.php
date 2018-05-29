@@ -22,7 +22,7 @@ class Notifikasi extends CI_Controller {
 	{
     $this->load->model('M_pilihmeja');
     $data['barang']= $this->M_pilihmeja->lihatStatus();
-		$this->load->view('v_notif',$data);
+	   $this->load->view('v_notif',$data);
 
 	}
 	public function remove(){

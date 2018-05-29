@@ -11,7 +11,7 @@ class PilihMenu extends CI_Controller{
   }
   function pilih (){
     for($i=0; $i<2; $i++) {
-      $data = array(
+     $data = array(
       'nama_menu' => $this->input->post("menu".$i) ,
       'jumlah' => $this->input->post("jumlah".$i),
       'id_pengunjung' => $this->session->userdata('id_pengunjung'));

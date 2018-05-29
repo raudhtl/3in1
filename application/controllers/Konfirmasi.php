@@ -18,7 +18,7 @@ class Konfirmasi extends CI_Controller {
     }
     else{
       $this->load->model('M_konfirmasi');
-  		$jumlah = $this->M_konfirmasi->jumlah($no_meja);
+  	  $jumlah = $this->M_konfirmasi->jumlah($no_meja);
       $hasil = $jumlah->num_rows();
       $this->M_konfirmasi->insert($hasil, $no_meja);
       $pembayaran = $this->M_konfirmasi->insert_pembayaran($no_meja);
