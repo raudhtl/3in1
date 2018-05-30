@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,12 +126,7 @@
 			});
 			</script>
 		</div>
-		<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
-				<ul class="dropdown-menu" style="margin-top: 50px;">
-					<li ><a href="Login/logout">Logout</a></li>
-				</ul>
-		</div>
+
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -143,14 +137,14 @@
 				<div class="col-lg-12 p-b-30">
 					<div class="t-left">
 						<span class="tit2 t-left">
-							No Meja : <?php echo $this->session->userdata('meja_bayar');?>
+							No Meja : <?php echo $this->session->userdata('no_meja');?>
 						</span><br><br>
 					</div>
           <div class="wrap-inputname size12 bo2 bo-rad-10" style="padding-right:10px;height:auto;">
 						<?php foreach ($nama as $name) { ?>
 
             <div class="row">
-              <div class="col-md-8   p-t-30">
+              <div class="col-md-12   p-t-30">
                   <span class="txt5 t-left p-l-20" >
                     <i class ="fa fa-odnoklassniki">Nama : <?php echo $name['nama']?></i>
                   </span><br><br>
@@ -168,7 +162,10 @@
 
 														$k =$this->session->userdata('i');
 														$_SESSION["sum"] = 0;
-															for($i=1; $i<$k; $i++){
+															for($i=1; ; $i++){
+																if (!isset($base[$name['nama']]['nama_menuu'.$i])){
+																	break;
+																}
 																	 $sum = $base[$name['nama']]['hargaa'.$i]+$_SESSION["sum"];
 																	 unset($_SESSION["sum"]);
 																	 $_SESSION["sum"] = $sum;
@@ -197,25 +194,26 @@
 
               </div>
             </div>
+						<?php
+							$this->session->unset_userdata('nama');
+							$this->session->set_userdata('tambah', TRUE);
+						 ?>
+
             <div class="col-md-4">
-              <form action="Pembayaran/bayar" method="post"  >
-                <div class="form-group">
-                  <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23  m-t-74">
-                    <input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="uang" placeholder="Masukkan Uang anda" >
-                  </div>
-                </div>
-							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
+              <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+								<form action="PilihMenu/tambah" method = "post">
+              <button name="tambah" value="<?php echo $name['nama']?>" type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Tambah Pesanan</button>
+						</form>
 							</div>
-            </form>
-						</div>
+            </div>
+<!--bagian dihapus-->
 
           </div>
 				<?php } ?>
 
 			</div><br><br>
 						<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23 float-r" style="height:50px; width:370px; background-color: #353535; font-weight:500;">
-								 <a href="Pilih_meja"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
+								 <a href="Identitas"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
 						</div>
 
 	</div>

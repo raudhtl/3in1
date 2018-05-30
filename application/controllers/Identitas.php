@@ -1,3 +1,4 @@
+
 <?php
 class Identitas extends CI_Controller{
   function index(){
