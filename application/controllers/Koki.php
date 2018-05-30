@@ -7,7 +7,6 @@ class Koki extends CI_Controller {
 
     $this->load->database();
     $this->load->model('M_pembayaran');
-    $this->load->model('M_pembayaran');
     $data['bayar'] = $this->M_pembayaran->data_menu($this->session->userdata('meja_bayar'));
     $this->load->view('v_koki', $data);
 

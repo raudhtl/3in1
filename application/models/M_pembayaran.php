@@ -25,6 +25,24 @@ class M_pembayaran extends CI_Model {
     }
     return $data;
   }
+  function total_harga($no_meja){
+      $query =  $this-> db ->query ("select sum(total_harga)  as total_harga from pembayaran, memesan_makanan, pengunjung where Pembayaran.no_pesanan=memesan_makanan.no_pesanan and pengunjung.id_pengunjung = memesan_makanan.id_pengunjung and pengunjung.nomor_meja = $no_meja");
+      return $query->row()->total_harga;
+  }
+  function total_harga_sendiri($no_meja, $nama){
+    $query =  $this-> db ->query ("select sum(total_harga)  as total_harga from pembayaran, memesan_makanan, pengunjung where Pembayaran.no_pesanan=memesan_makanan.no_pesanan and pengunjung.id_pengunjung = memesan_makanan.id_pengunjung and pengunjung.nomor_meja = $no_meja and pengunjung.nama='$nama'");
+    return $query->row()->total_harga;
+  }
+  function update_jumlah_pengunjung($no_meja){
+    $query = $this->db->query("update meja set jumlah_pengunjung = 0 where nomor_meja = $no_meja");
+  }
+  function update_status($no_meja){
+    $query = $this->db->query("update meja set status = 'Available' where nomor_meja = $no_meja");
+  }
+  function ambil_jumlah_pengunjung($no_meja){
+    $query = $this->db->query("select jumlah_pengunjung from meja where nomor_meja = $no_meja");
+    return $query->row()->jumlah_pengunjung;
+  }
 
 }
 
