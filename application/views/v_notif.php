@@ -110,7 +110,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url()?>assets/images/koki.jpg')"
-                  <?php if($this->session->userdata('koki') != TRUE){?>
+                  <?php 
+                  if($this->session->userdata('koki') != TRUE){?>
                   disabled <?php }?>><br>
                 <div class="captn" <?php if($this->session->userdata('koki') == TRUE){?> style="background-color :#221d11;"<?php }?>>
                   <h4>Koki</h4><br>

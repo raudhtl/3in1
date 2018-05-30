@@ -291,8 +291,9 @@ input[type=checkbox]:checked + label {
     </table>
 
 <a href='Pilih_meja'><button type="button" class="btn btn-lg btn-info">Selesai</button></a>
-<button type="button" class="btn btn-lg btn-info">Panggil Pelayan</button>
-
+<form method="post" action="Konfirmasi/pilih">
+<button type="submit"  name="pilih" value="3" class="btn btn-lg btn-info">Panggil Pelayan</button>
+</form>
     </div>
   </div>
   <!--buttons-->
@@ -316,8 +317,6 @@ input[type=checkbox]:checked + label {
 				<div class="col-md-4 footer-bottom  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
 					<h2>Follow Us</h2>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
-					<ul class="social-ic">
 						<li><a href="#"><i></i></a></li>
 						<li><a href="#"><i class="ic"></i></a></li>
 						<li><a href="#"><i class="ic1"></i></a></li>
