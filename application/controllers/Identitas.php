@@ -18,6 +18,11 @@ class Identitas extends CI_Controller{
             echo $this->session->set_flashdata('msg_sama', 'Nama tidak boleh sama');
             redirect ('Identitas');
           }
+
+          if($this->session->userdata('l')==1){
+            redirect('Login');
+          }
+
       		$cek_user = $this->M_Identitas->insert($nama, $meja);
           $cek_id = $this->M_Identitas->ambil_id($nama, $meja);
           $hasil = $cek_id->row();
