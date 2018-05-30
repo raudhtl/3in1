@@ -1,4 +1,6 @@
-<!--A Design by W3layouts
+
+
+  <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -7,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>3in1</title>
+<title>Cookery A Food Category Flat Bootstrap Responsive Website Template | Menu :: w3layouts</title>
 <link href="<?=base_url();?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?=base_url();?>assets/js/jquery.min.js"></script>
@@ -175,7 +177,7 @@ input[type=checkbox]:checked + label {
 						<li><a   href="blog.html">Blog</a></li>
 						<li><a class="active" href="typo.html">Codes</a></li>
 						<li><a  href="events.html">Events</a></li>
-
+						<li><a  href="contact.html">Contact</a></li>
 					</ul>
 				</div>
 			<script>
@@ -247,7 +249,7 @@ input[type=checkbox]:checked + label {
 	</div>
 	<!-- Lables for the controls -->
 	<div id="timer_controls">
-		<label for="start">Mulai</label>
+		<label for="start">Start</label>
 		<label for="stop">Stop</label>
 		<label for="reset">Reset</label>
 	</div>
@@ -290,8 +292,9 @@ input[type=checkbox]:checked + label {
     </table>
 
 <a href='Pilih_meja'><button type="button" class="btn btn-lg btn-info">Selesai</button></a>
-<button type="button" class="btn btn-lg btn-info">Panggil Pelayan</button>
-
+<form method="post" action="Konfirmasi/pilih">
+<button type="submit"  name="pilih" value="3" class="btn btn-lg btn-info">Panggil Pelayan</button>
+</form>
     </div>
   </div>
   <!--buttons-->
@@ -315,8 +318,6 @@ input[type=checkbox]:checked + label {
 				<div class="col-md-4 footer-bottom  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
 					<h2>Follow Us</h2>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
-					<ul class="social-ic">
 						<li><a href="#"><i></i></a></li>
 						<li><a href="#"><i class="ic"></i></a></li>
 						<li><a href="#"><i class="ic1"></i></a></li>
@@ -334,4 +335,4 @@ input[type=checkbox]:checked + label {
 	<!--//footer-->
 </body>
 </html>
->>>>>>> refs/remotes/origin/tambahpesanan
+>>>>>>> refs/remotes/origin/notifikasi_kasir

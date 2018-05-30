@@ -1,5 +1,4 @@
 
-
   <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -41,33 +40,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-<div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="dashboard"><span>3IN1</span></a></h1>
-		</div>
-    <div class="nav-icon" style="padding-top:25px;">
-      <a href="#" class="navicon"></a>
-        <div class="toggle">
-          <ul class="toggle-menu">
-            <li><a  href="dashboard">Home</a></li>
-            <li><a href="menu.html">Menu</a></li>
+  <div class="header head">
+  	<div class="container">
+  		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
+  			<h1><a href="dashboard"><span>3IN1</a></h1>
+  		</div>
+      <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+        <a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
+      </div>
+      <?php if ($this->session->userdata('notif') == TRUE) { ?>
+    <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+      <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
+    </div>
+  <?php } else { ?>
+    <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+      <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
+    </div>
+  <?php } ?>
+      <div class="nav-icon" style="padding-top:25px;">
+        <a href="#" class="navicon"></a>
+          <div class="toggle">
+            <ul class="toggle-menu">
+              <li><a  href="dashboard">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+            </ul>
+          </div>
+        <script>
+        $('.navicon').on('click', function (e) {
+          e.preventDefault();
+          $(this).toggleClass('navicon--active');
+          $('.toggle').toggleClass('toggle--active');
+        });
+        </script>
+      </div>
+      <div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
+          <ul class="dropdown-menu" style="margin-top: 50px;">
+            <li ><a href="Login/logout">Logout</a></li>
           </ul>
-        </div>
-      <script>
-      $('.navicon').on('click', function (e) {
-        e.preventDefault();
-        $(this).toggleClass('navicon--active');
-        $('.toggle').toggleClass('toggle--active');
-      });
-      </script>
-    </div>
-    <div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
-        <ul class="dropdown-menu" style="margin-top: 50px;">
-          <li ><a href="Login/logout">Logout</a></li>
-        </ul>
-    </div>
+      </div>
 
 	<div class="clearfix"></div>
 	</div>
@@ -99,9 +110,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url()?>assets/images/koki.jpg')"
-                  <?php if($this->session->userdata('koki') != TRUE){?>
+                  <?php 
+                  if($this->session->userdata('koki') != TRUE){?>
                   disabled <?php }?>><br>
-                <div class="captn">
+                <div class="captn" <?php if($this->session->userdata('koki') == TRUE){?> style="background-color :#221d11;"<?php }?>>
                   <h4>Koki</h4><br>
                   <p>Klik Untuk Menghilangkan Notifikasi</p>
                 </div></button>
@@ -111,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <?php
           $url = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
           ?>
-          <a href="<?=$url?>" class="btn btn-info" style="margin-top:50px; width:260px; background-color:#40c9b4; Height:50px; font-size:25px;">Selesai</a>
+          <a href="Pilih_meja" class="btn btn-info" style="margin-top:50px; width:260px; background-color:#40c9b4; Height:50px; font-size:25px;">Selesai</a>
         </div>
       <div class="col-md-9 menu-bottom1">
         <?php
@@ -130,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               $no_meja = $b->nomor_meja;
               if($this->session->userdata('no_meja'. $b->nomor_meja) != TRUE){?>
               disabled <?php }?>><br>
-              <div class="captn">
+              <div class="captn" <?php if($this->session->userdata('no_meja'. $b->nomor_meja) == TRUE){?> style="background-color :#221d11;"<?php }?>>
                 <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
                 <p>Klik Untuk Menghilangkan Notifikasi</p>
               </div>
@@ -185,4 +197,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--//footer-->
 
 </body>
+>>>>>>> refs/remotes/origin/notifikasi_kasir
 </html>
