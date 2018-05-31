@@ -5,6 +5,7 @@
 	<title>Reservation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link href="<?=base_url();?>assets/css2/form.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -101,23 +102,12 @@
   </style>
 </head>
 
-
-
 <body >
 	 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
 			<h1><a href="index.html"><span>3IN1</a></h1>
 		</div>
-		<?php if ($this->session->userdata('notif') == TRUE) { ?>
-  <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
-    <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
-  </div>
-<?php } else { ?>
-  <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
-    <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
-  </div>
-<?php } ?>
 		<div class="nav-icon">
 			<a href="#" class="navicon"></a>
 				<div class="toggle">
@@ -155,10 +145,7 @@
 						</span><br><br>
 					</div>
           <div class="wrap-inputname size12 bo2 bo-rad-10" style="padding-right:10px;height:auto;">
-						<?php
-						function total_harga($jumlah, $harga){
-							return $jumlah * $harga;
-						}foreach ($nama as $name) { ?>
+						<?php foreach ($nama as $name) { ?>
 
             <div class="row">
               <div class="col-md-8   p-t-30">
@@ -170,8 +157,8 @@
                           <tr>
                             <th style="text-align:right;">#</th>
                             <th style="text-align:right;">Menu</th>
+                            <th style="text-align:right;">Jumlah</th>
                             <th style="text-align:right;">Harga</th>
-                            <th style="text-align:right;">Total Harga</th>
                           </tr>
 
                         <tbody>
@@ -179,9 +166,8 @@
 
 														$k =$this->session->userdata('i');
 														$_SESSION["sum"] = 0;
-
 															for($i=1; $i<$k; $i++){
-																	 $sum = total_harga($base[$name['nama']]['hargaa'.$i], $base[$name['nama']]['jumlahh'.$i])+$_SESSION["sum"];
+																	 $sum = $base[$name['nama']]['hargaa'.$i]+$_SESSION["sum"];
 																	 unset($_SESSION["sum"]);
 																	 $_SESSION["sum"] = $sum;
 																  $harga=number_format($_SESSION["sum"],0,",",".");
@@ -190,8 +176,8 @@
                           <tr>
                             <td style="text-align:right;"><?php echo $i;?></td>
                             <td style="text-align:right;"><?php echo $base[$name['nama']]['nama_menuu'.$i];?></td>
-                            <td style="text-align:right;"><?php echo $base[$name['nama']]['jumlahh'.$i]." * ".$base[$name['nama']]['hargaa'.$i];?></td>
-                            <td style="text-align:right;"><?php echo "Rp. ".total_harga($base[$name['nama']]['hargaa'.$i], $base[$name['nama']]['jumlahh'.$i]);?></td>
+                            <td style="text-align:right;"><?php echo $base[$name['nama']]['jumlahh'.$i];?></td>
+                            <td style="text-align:right;"><?php echo $base[$name['nama']]['hargaa'.$i];?></td>
                           </tr>
 													<?php
 												}
@@ -217,10 +203,11 @@
                   </div>
                 </div>
 							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="submit" name=metode value='<?php echo $name['nama']?>' class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
+									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
 							</div>
             </form>
 						</div>
+
           </div>
 				<?php } ?>
 
@@ -309,5 +296,4 @@
 	<script src="<?=base_url();?>assets/js/main.js"></script>
 
 </body>
->>>>>>> refs/remotes/origin/notifikasi_kasir
 </html>

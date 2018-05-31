@@ -9,5 +9,4 @@ class M_Identitas extends CI_Model {
 		return $query;
   }
 }
-
 ?>

@@ -1,3 +1,4 @@
+
 <?php
 class M_Identitas extends CI_Model {
   function insert($nama, $meja){
@@ -8,5 +9,4 @@ class M_Identitas extends CI_Model {
 		return $query;
   }
 }
-
 ?>

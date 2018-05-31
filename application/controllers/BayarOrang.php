@@ -17,4 +17,4 @@ class BayarOrang extends CI_Controller {
 
   }
 }
- ?>
+?>

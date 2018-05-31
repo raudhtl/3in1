@@ -1,3 +1,4 @@
+
 <?php
 $dbhost="localhost";
 $dbuser="root";
@@ -13,4 +14,4 @@ while ($datavar=mysqli_fetch_array($data)) {
 }
 echo json_encode($hasil);
 
- ?>
+?>
