@@ -1,4 +1,3 @@
-
 <?php
 class Koki extends CI_Controller {
   function index(){

@@ -1,4 +1,4 @@
-<!--A Design by W3layouts
+  <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -157,71 +157,9 @@ input[type=checkbox]:checked + label {
 	color: white;
 	background: #5bc0de;
 }
-
 </style>
 
 </head>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var dataPesanan = <?php echo json_encode($no_pesanan); ?>;
-        $.each(dataPesanan, function(key, value){
-          var no_pesanan=value;
-          var param;
-          var x;
-          var res;
-          var tahun;
-          var waktu;
-          var time;
-          $.ajax({
-                url: 'http://localhost/3in1/index.php/Koki/countDown',
-                type: "post",
-                data: {pesanan: no_pesanan},
-                success: function(data){
-                  data = $.parseJSON(data);
-                  param=data[0].waktu;
-                  x=parse(param);
-                  var res = x.split(" ");
-                  var tahun= res[0];
-                  var waktu= res[1];
-                   time=format(tahun)+" "+waktu;
-                   // console.log(time);
-                   var countDownDate = new Date(time).getTime();
-
-                   var x = setInterval(function() {
-
-                   var now = new Date().getTime();
-
-                   var distance = now - countDownDate;
-
-                   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                   document.getElementById("demo-" + no_pesanan).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-                   }, 1000);
-                }
-            });
-        });
-      });
-
-      function parse(x){
-        x=x.substring(1,x.length-1);
-        return x;
-      }
-
-      function format(y){
-        var mon=["Jan","Feb","Mar","Apr", "May"];
-        var tahun=y.substring(0,4);
-        var monf=parseInt(y.substring(5,7));
-        var bulan = mon[monf-1];
-        var tanggal = y.substring(y.length-2);
-        var hasil = bulan +" "+ tanggal + ", "+tahun;
-
-        return hasil;
-      }
-    </script>
 <body>
 <div class="header head">
 	<div class="container">
@@ -270,41 +208,91 @@ input[type=checkbox]:checked + label {
        	<h3 style="text-align:center;">KOKI</h3>
       </div>
 
+			<div class="stop">
+	<!-- time to add the controls -->
+	<input id="start" name="controls" type="radio" />
+	<input id="stop" name="controls" type="radio" />
+	<input id="reset" name="controls" type="radio" />
+	<div class="timer">
+		<div class="cell">
+			<div class="numbers tenhour moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell">
+			<div class="numbers hour moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+		<div class="cell">
+			<div class="numbers tenminute movesix">0 1 2 3 4 5 6</div>
+		</div>
+		<div class="cell">
+			<div class="numbers minute moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+		<div class="cell">
+			<div class="numbers tensecond movesix">0 1 2 3 4 5 6</div>
+		</div>
+		<div class="cell">
+			<div class="numbers second moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+		<div class="cell">
+			<div class="numbers milisecond moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell">
+			<div class="numbers tenmilisecond moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell">
+			<div class="numbers hundredmilisecond moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+	</div>
+	<!-- Lables for the controls -->
+	<div id="timer_controls">
+		<label for="start">Start</label>
+		<label for="stop">Stop</label>
+		<label for="reset">Reset</label>
+	</div>
+</div>
+
+
   <div class="bs-example">
     <table class="table">
       <tbody>
         <tr>
-            <td width="40%"><h2 id="h2-bootstrap-heading"><u>Nama Makanan</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
-					  <td width="20%" style="text-align:center;"><h2 id="h2-bootstrap-heading"><u>Jumlah</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
-            <td width="20%" style="text-align:center;"><h2 id="h2-bootstrap-heading"><u>Time</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
-						<td width="10%" style="text-align:center;"><h2 id="h2-bootstrap-heading"><u>Checkbox</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
+            <td width="60%"><h2 id="h2-bootstrap-heading"><u>Nama Makanan</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
+					  <td width="30%"><h2 id="h2-bootstrap-heading"><u>Jumlah</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
+						<td width="10%"><h2 id="h2-bootstrap-heading"><u>Checkbox</u><a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2></td>
         </tr>
 				<tr style="color:black;">
-        <?php foreach($bayar as $b){ $i=1;?>
-    				<td width="40%"><h4 id="h4.-bootstrap-heading"><?php echo $b->nama_menu?><a class="anchorjs-link" href="#h4.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
-    				<td width="20%" style="text-align:center;"><h4 id="h4.-bootstrap-heading"><?php echo $b->total?><a class="anchorjs-link" href="#h4.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
-            <td width="20%" style="text-align:center;"><p id="demo-<?php echo $b->no_pesanan; ?>"></p></td>
-            <td class="type-info" width="10%" style="text-align:center;">
-						   <form action="/action_page.php" method="get">
-							     <div class="checkboxes">
-						           <input type="checkbox" name="1" id="option-one-<?php echo $b->no_pesanan; ?>" value="orange"><label for="option-one-<?php echo $b->no_pesanan; ?>" class="highlight">Done</label>
-						       </div>
-						   </form>
-					  </td>
-				</tr>
-      <?php } ?>
-    </div>
+        <?php foreach($bayar as $b){ ?>
+				<td width="60%"><h4 id="h4.-bootstrap-heading"><?php echo $b->nama_menu?><a class="anchorjs-link" href="#h4.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
+				<td width="30%" style="text-align:center;"><h4 id="h4.-bootstrap-heading"><?php echo $b->total?><a class="anchorjs-link" href="#h4.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h4></td>
+					<td class="type-info" width="10%" style="text-align:center;">
+						<form action="/action_page.php" method="get">
+							<div class="checkboxes">
+						<input type="checkbox" name="1" id="option-one" value="orange"><label for="option-one" class="highlight">Done</label>
+						</div>
 						</form>
 					</td>
 				</tr>
+      <?php } ?>
+</div>
+						</form>
+					</td>
+				</tr>
+
+
+
+
+
 
       </tbody>
 
     </table>
 
 <a href='Pilih_meja'><button type="button" class="btn btn-lg btn-info">Selesai</button></a>
-<button type="button" class="btn btn-lg btn-info">Panggil Pelayan</button>
-
+<form method="post" action="Konfirmasi/pilih">
+<button type="submit"  name="pilih" value="3" class="btn btn-lg btn-info">Panggil Pelayan</button>
+</form>
     </div>
   </div>
   <!--buttons-->
@@ -328,8 +316,6 @@ input[type=checkbox]:checked + label {
 				<div class="col-md-4 footer-bottom  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
 					<h2>Follow Us</h2>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
-					<ul class="social-ic">
 						<li><a href="#"><i></i></a></li>
 						<li><a href="#"><i class="ic"></i></a></li>
 						<li><a href="#"><i class="ic1"></i></a></li>
@@ -347,4 +333,3 @@ input[type=checkbox]:checked + label {
 	<!--//footer-->
 </body>
 </html>
->>>>>>> refs/remotes/origin/tambahpesanan
