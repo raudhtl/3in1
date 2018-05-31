@@ -10,14 +10,36 @@ class PilihMenu extends CI_Controller{
     $this->load->view('v_pilih_menu', $data);
   }
   function pilih (){
-    for($i=0; $i<2; $i++) {
+    if ($this->session->userdata('tambah') == TRUE){
+      $this->load->model('M_pilih_menu');
+      $meja = $this->session->userdata('no_meja');
+      $nama = $this->session->userdata('nama');
+      $id_pengunjung = $this->M_pilih_menu->ambil_id_pengunjung($meja, $nama);
+      for($i=0; $i<2; $i++) {
       $data = array(
       'nama_menu' => $this->input->post("menu".$i) ,
       'jumlah' => $this->input->post("jumlah".$i),
-      'id_pengunjung' => $this->session->userdata('id_pengunjung'));
-      $this->db->insert('memesan_makanan', $data);
+      'id_pengunjung' => $id_pengunjung
+    );
+        $this->db->insert('memesan_makanan', $data);
+      }
+      redirect('lihatpesanan');
+    }else{
+      for($i=0; $i<2; $i++) {
+        $data = array(
+        'nama_menu' => $this->input->post("menu".$i) ,
+        'jumlah' => $this->input->post("jumlah".$i),
+        'id_pengunjung' => $this->session->userdata('id_pengunjung'));
+          $this->db->insert('memesan_makanan', $data);
+      }
     }
-    redirect('Identitas');
+
+  }
+  function tambah (){
+    $nama =  $this->input->post('tambah');
+    $this->session->set_userdata('nama',$nama);
+    var_dump($nama);
+    redirect('PilihMenu');
   }
 }
  ?>

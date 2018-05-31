@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Reservation</title>
+	<title>3IN1</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -83,11 +83,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<!--
 <script type="text/javascript">
 	function tampil_alamat(param){
+
 		var i;
-			for(var x=1; x<=3; x++){
+			for(var x=1; x<=10; x++){
 
 				document.getElementById("templatealamat".concat(x)).style.visibility = "hidden";
 
@@ -97,7 +98,10 @@
 				document.getElementById("templatealamat".concat(i)).style.visibility = "visible";
 			}
 		}
-</script>
+		var windo = param;
+		$.post('Identitas.php', {variable: windo});
+</script>-->
+
 
 	<style type="text/css">
   	body{
@@ -122,11 +126,11 @@
 
 
 
-<body >
+<body onload="tampil_alamat(0)">
 	 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>C</span><img src="<?=base_url();?>assets/images2/oo.png" alt=""><img src="<?=base_url();?>assets/images2/oo.png" alt="">kery</a></h1>
+			<h1><a href="index.html"><span>3IN1</a></h1>
 		</div>
 		<div class="nav-icon">
 			<a href="#" class="navicon"></a>
@@ -158,7 +162,7 @@
 				<div class="col-lg-12 p-b-30">
 					<div class="t-center">
 						<span class="tit2 t-center">
-							Reservation
+							Identitas Pelanggan
 						</span>
 
 						<h3 class="tit3 t-center m-b-35 m-t-2">
@@ -174,9 +178,6 @@
 
 							<div class="col-md-4">
 								<!-- People -->
-								<span class="txt9">
-									People
-								</span>
                 <?php if ($this->session->flashdata('msg_sama') == TRUE) : ?>
                           <div class="alert alert-danger fade in" style="margin-top:15px;">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -190,23 +191,6 @@
                           </div>
                 <?php endif; ?>
 
-								<div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<!-- Select2 -->
-									<select class="selection-1" name="people" onchange="tampil_alamat(this.value)">
-										<option value="0">0 person</option>
-										<option value="1">1 person</option>
-										<optionvalue="2">2 people</option>
-										<option value="3">3 people</option>
-										<option value="4">4 people</option>
-										<option value="5">5 people</option>
-										<option value="6">6 people</option>
-										<option value="7">7 people</option>
-										<option value="8">8 people</option>
-										<option value="9">9 people</option>
-										<option value="10">10 people</option>
-									</select>
-								</div>
-
 							</div>
 
 							<div class="col-md-4">
@@ -215,7 +199,7 @@
 							</div>
 						</div>
               <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat1" style="visibility: hidden;">
+						<div class="row" id="templatealamat1">
 
 							<div class="col-md-4">
 								<!-- Name -->
@@ -231,392 +215,54 @@
 									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
 								</div>
 							</div>
-            </form>
 
 							<div class="col-md-4">
 								<!-- lihat pesanan -->
 
 								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
 									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
-									 	<div class="modal fade" id="myModal1" role="dialog">
-    						 			<div class="modal-dialog modal-lg">
+										<div class="modal fade" id="myModal1" role="dialog">
+											<div class="modal-dialog modal-lg">
 
-      								<!-- Modal content-->
+											<!-- Modal content-->
 											<div id="wrapshopcart">
-   <h1>Daftar Pesanan Anda</h1>
+												<h1>Daftar Pesanan Anda</h1>
+
+												<table>
+													<tr><th width="70%">Produk</th><th width="10%">Quantity</th><th width="20%">Jumlah</th></tr>
+
+													<?php foreach($_SESSION['cart'] as $row):?>
+														<?php
+														$jumlah = $_SESSION['price'][$row['productid']] * $row['qty'];
+														$total += $jumlah;
+														?>
+
+														<tr><td><?php echo $row['product'];?></td><td><?php echo $row['qty'];?></td><td><?php echo $jumlah; ?></td></tr>
+													<?php endforeach;?>
+
+													<tr class="total"><td></td><td >Total</td><td><?php echo $total;?></td></tr>
+												</table>
 
 
-
-   <a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
- </div>
-    									</div>
-  									</div>
+											</div>
+											</div>
+										</div>
 							</div>
 						</div>
-
-						</div>
-            <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat2" style="visibility: hidden;">
-							<div class="col-md-4">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-4">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-								</div>
-							</div>
             </form>
-
-							<div class="col-md-4">
-								<!-- lihat pesanan -->
-
-								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal2">Lihat Pesanan</button>
-									 	<div class="modal fade" id="myModal2" role="dialog">
-    						 			<div class="modal-dialog modal-lg">
-
-      								<!-- Modal content-->
-											<div id="wrapshopcart">
-   <h1>Daftar Pesanan Anda</h1>
-
-
-   <a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-  </div>
-    									</div>
-  									</div>
-							</div>
 						</div>
-
-						</div>
-                        <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat3" style="visibility: hidden;">
-
-							<div class="col-md-4">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-4">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-								</div>
-							</div>
-            </form>
-							<div class="col-md-4">
-								<!-- lihat pesanan -->
-
-								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal3">Lihat Pesanan</button>
-									 	<div class="modal fade" id="myModal3" role="dialog">
-    						 			<div class="modal-dialog modal-lg">
-
-      								<!-- Modal content-->
-											<div id="wrapshopcart">
-   <h1>Daftar Pesanan Anda</h1>
-
-
-   <a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-  </div>
-    									</div>
-  									</div>
-							</div>
-						</div>
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat4" style="visibility: hidden;">
-				<div class="col-md-4">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-      </form>
-
-				<div class="col-md-4">
-					<!-- lihat pesanan -->
-
-					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
-							<div class="modal fade" id="myModal1" role="dialog">
-								<div class="modal-dialog modal-lg">
-
-								<!-- Modal content-->
-								<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-								</div>
-							</div>
-				</div>
-			</div>
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat5" style="visibility: hidden;">
-				<div class="col-md-4">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<!-- lihat pesanan -->
-
-					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal2">Lihat Pesanan</button>
-							<div class="modal fade" id="myModal2" role="dialog">
-								<div class="modal-dialog modal-lg">
-
-								<!-- Modal content-->
-								<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-								</div>
-							</div>
-				</div>
-			</div>
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat6" style="visibility: hidden;">
-				<div class="col-md-4">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<!-- lihat pesanan -->
-
-					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal3">Lihat Pesanan</button>
-							<div class="modal fade" id="myModal3" role="dialog">
-								<div class="modal-dialog modal-lg">
-
-								<!-- Modal content-->
-								<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-								</div>
-							</div>
-				</div>
-			</div>
-
-</div>
-
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat7" style="visibility: hidden;">
-	<div class="col-md-4">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- lihat pesanan -->
-
-		<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
-				<div class="modal fade" id="myModal1" role="dialog">
-					<div class="modal-dialog modal-lg">
-
-					<!-- Modal content-->
-					<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-					</div>
-				</div>
-	</div>
-</div>
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat8" style="visibility: hidden;">
-	<div class="col-md-4">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- lihat pesanan -->
-
-		<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal2">Lihat Pesanan</button>
-				<div class="modal fade" id="myModal2" role="dialog">
-					<div class="modal-dialog modal-lg">
-
-					<!-- Modal content-->
-					<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-					</div>
-				</div>
-	</div>
-</div>
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat9" style="visibility: hidden;">
-	<div class="col-md-4">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- lihat pesanan -->
-
-		<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal3">Lihat Pesanan</button>
-				<div class="modal fade" id="myModal3" role="dialog">
-					<div class="modal-dialog modal-lg">
-
-					<!-- Modal content-->
-					<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-					</div>
-				</div>
-	</div>
-</div>
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat10" style="visibility: hidden;">
-	<div class="col-md-4">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<!-- lihat pesanan -->
-
-		<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal3">Lihat Pesanan</button>
-				<div class="modal fade" id="myModal3" role="dialog">
-					<div class="modal-dialog modal-lg">
-
-					<!-- Modal content-->
-					<div id="wrapshopcart">
-<h1>Daftar Pesanan Anda</h1>
-
-
-<a href="checkout.php" class="btnsubmit">Lanjut ke Pembayaran >></a>
-</div>
-					</div>
-				</div>
-	</div>
-</div>
-
-</div>
 
 
 
 			<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
 				<!-- Button3 -->
-				<a href="Konfirmasi"><button type="button" class="btn3 flex-c-m size13 txt11 trans-0-4">
-					Selesai
+					<form method="post" action="Konfirmasi/pilih">
+				<button type="submit" value="2" class="btn3 flex-c-m size20 txt11 trans-0-4" name="pilih">
+									 Panggil Pelayan
+							 </button>
+			</form>
+				<a href="lihatpesanan"><button type="button" class="btn3 flex-c-m size20 txt11 trans-0-4">
+					Lihat Pesanan
 				</button></a>
 			</div>
 		</div>

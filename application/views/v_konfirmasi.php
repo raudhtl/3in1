@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>C</span><img src="<?=base_url();?>assets/images/oo.png" alt=""><img src="<?=base_url();?>assets/images/oo.png" alt="">kery</a></h1>
+			<h1><a href="index.html"><span>3IN1</span></a></h1>
 		</div>
 		<div class="nav-icon">
 			<a href="#" class="navicon"></a>
@@ -70,11 +70,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="buttonshop">
 			<ul>
         <form method="post" action="Konfirmasi/pilih">
-			<li><button type="submit" value="1" name="pilih" class="register">
+			<li><button type="submit" value="1" class="register registerLink" name="pilih">
 								 TAMBAH PESANAN
 						 </button></li>
-			<li><button type="submit" value="2" name="pilih" class="register">
-					     PANGGIL PELAYAN
+			<li><button type="submit" value="2" class="register registerLink" name="pilih">
+					     <a >PANGGIL PELAYAN</a>
 			</button></li>
     </form>
 			</ul>

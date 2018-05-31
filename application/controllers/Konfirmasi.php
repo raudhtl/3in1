@@ -11,25 +11,23 @@ class Konfirmasi extends CI_Controller {
   }
   function pilih(){
     $pilihan = $this->input->post('pilih');
+    $no_meja = $this->session->userdata('no_meja');
     echo $pilihan;
     if($pilihan == 1){
       redirect ('Identitas');
     }
     else{
       $this->load->model('M_konfirmasi');
-  		$jumlah = $this->M_konfirmasi->jumlah($this->session->userdata('no_meja'));
+  		$jumlah = $this->M_konfirmasi->jumlah($no_meja);
       $hasil = $jumlah->num_rows();
-      $this->M_konfirmasi->insert($hasil, $this->session->userdata('no_meja'));
-      $pembayaran = $this->M_konfirmasi->insert_pembayaran($this->session->userdata('no_meja'));
+      $this->M_konfirmasi->insert($hasil, $no_meja);
+      $pembayaran = $this->M_konfirmasi->insert_pembayaran($no_meja);
       $hasil2 = $pembayaran->row_array();
       $this->M_konfirmasi->insert_pesanan($hasil2);
-
-      $this->session->sess_destroy();
+      $this->session->set_userdata('notif', TRUE);
+      $this->session->set_userdata('no_meja'.$no_meja, TRUE);
       redirect('dashboard');
     }
   }
 }
  ?>
-
-
- select sum(jumlah) where nama menu = 'Ayam Geprek';

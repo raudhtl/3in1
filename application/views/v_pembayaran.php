@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?=base_url();?>assets/js2/jquery.min.js"></script>
+	<script src="<?=base_url();?>assets/js/jquery.min.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
 	<link href="<?=base_url();?>assets/css2/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -21,8 +22,8 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/move-top.js"></script>
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/easing.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/move-top.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/easing.js"></script>
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					$(".scroll").click(function(event){
@@ -98,10 +99,6 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-  table{margin:2em 0 0 0; border:1px solid #eee;width:100%; border-collapse: separate;border-spacing:0;}
-  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;}
-  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;}
-  table tr.total td{font-size:1.5em;}
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
@@ -112,7 +109,7 @@
 	 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>C</span><img src="<?=base_url();?>assets/images2/oo.png" alt=""><img src="<?=base_url();?>assets/images2/oo.png" alt="">kery</a></h1>
+			<h1><a href="index.html"><span>3IN1</span></a></h1>
 		</div>
 		<div class="nav-icon">
 			<a href="#" class="navicon"></a>
@@ -150,29 +147,41 @@
 
     								<!-- Name -->
 
-    								<div class="wrap-inputname size12 bo2 bo-rad-10" style="padding-right:10px;">
+    								<div class="wrap-inputname size12 bo2 bo-rad-10 p-t-30" style="padding-right:10px; height:auto;">
 
                       <div class="table-responsive">
-                      <table class="table"  style="background-color: transparent;">
+                      <table class="table">
 
                           <tr>
-                            <th>#</th>
-                            <th>Menu</th>
-                            <th>Jumlah</th>
-                            <th>Harga</th>
+                            <th style="text-align:right;">#</th>
+                            <th style="text-align:right;">Menu</th>
+                            <th style="text-align:right;">Jumlah</th>
+                            <th style="text-align:right;">Harga</th>
                           </tr>
 
                         <tbody>
                           <?php
+                          $_SESSION["sum"] = "0";
+                          $i =0;
                             foreach($bayar as $b){
+                              $harga=number_format(harga('$b->nama_menu', $b->total, $b->harga),0,",",".");
+                              $i++;
                               ?>
                           <tr>
-                            <td>1</td>
-                            <td><?php echo $b->nama_menu?></td>
-                            <td><?php echo $b->total?></td>
-                            <td><?php echo harga('$b->nama_menu', $b->total, $b->harga)?></td>
+                            <td style="text-align:right;"><?php echo $i;?></td>
+                            <td style="text-align:right;"><?php echo $b->nama_menu?></td>
+                            <td style="text-align:right;"><?php echo $b->total?></td>
+                            <td style="text-align:right;"><?php echo "Rp".$harga?></td>
                           </tr>
-                                                              <?php } ?>
+                            <?php
+                          } function total (){
+                            $sum = harga('$b->nama_menu', $b->total, $b->harga, 0)+$sum;
+                          }?>
+                          <tr><td></td>
+                              <td style="text-align:right;">Total</td>
+                              <td style="text-align:right;"><?php echo "Rp. ".$_SESSION["sum"]; ?></td>
+                              <td></td>
+                          </tr>
                         </tbody>
 
                       </table>
@@ -182,10 +191,24 @@
               </div>
             </div>
             <div class="col-md-4">
-
+              <form action="Pembayaran/bayar" method="post">
+                <div class="form-group"  >
+                  <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                    <input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="uang" placeholder="Masukkan Uang anda" >
+                  </div>
+                </div>
 							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
+									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
 							</div>
+            </form>
+              <div class="t-center">
+    						<span class="tit2 t-center">
+    							Atau
+    						</span><br><br>
+    					</div>
+              <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+                   <a href="BayarOrang"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Per Orang</button></a>
+              </div>
 						</div>
           </div>
 
@@ -199,8 +222,12 @@
 	<div id="dropDownSelect1"></div>
 <?php function harga ($nama, $jumlah, $hargaa){
     $total = $jumlah*$hargaa;
+    $sum = $total + $_SESSION["sum"];
+    unset($_SESSION["sum"]);
+    $_SESSION["sum"] = "$sum";
     return $total;
 }
+
 ?>
 	<!--footer-->
 		<div class="footer" id="footer-down">
