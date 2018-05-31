@@ -309,7 +309,6 @@ input[type=checkbox]:checked + label {
     </div>
   </div>
   <!--buttons-->
-
 	</div>
 </div>
 <!--footer-->

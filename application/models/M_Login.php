@@ -10,5 +10,4 @@ class M_login extends CI_Model {
 		return $query;
 	}
 }
-
 ?>

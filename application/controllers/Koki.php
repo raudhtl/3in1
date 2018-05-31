@@ -1,7 +1,6 @@
 <?php
 class Koki extends CI_Controller {
   function index(){
-
     $this->load->helper("url");
     $this->load->helper('form');
 

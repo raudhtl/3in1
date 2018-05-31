@@ -101,8 +101,6 @@
   </style>
 </head>
 
-
-
 <body >
 	 <div class="header head">
 	<div class="container">
