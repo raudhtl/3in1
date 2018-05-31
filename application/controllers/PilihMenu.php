@@ -43,4 +43,4 @@ class PilihMenu extends CI_Controller{
     redirect('PilihMenu');
   }
 }
-?>
+ ?>

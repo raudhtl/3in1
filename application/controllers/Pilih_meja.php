@@ -42,6 +42,7 @@ class Pilih_meja extends CI_Controller{
   			echo $this->session->set_flashdata('msg', validation_errors());
   			redirect('Login');
   	}
+
   }
   function pilih_bayar (){
       $pilihan = $this->input->post('pilihan');
