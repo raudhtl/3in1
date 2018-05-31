@@ -36,4 +36,3 @@ class Notifikasi extends CI_Controller {
 		redirect('Notifikasi');
 	}
 }
-?>

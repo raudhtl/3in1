@@ -16,4 +16,5 @@ class M_konfirmasi extends CI_Model {
     $query = $this-> db->insert('pembayaran', $data);
   }
 }
+
 ?>

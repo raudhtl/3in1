@@ -34,4 +34,4 @@ class Identitas extends CI_Controller{
       }
 }
 }
-?>
+ ?>

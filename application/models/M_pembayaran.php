@@ -35,4 +35,5 @@ class M_pembayaran extends CI_Model {
   }
 
 }
+
 ?>

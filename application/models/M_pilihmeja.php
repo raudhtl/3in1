@@ -12,4 +12,5 @@ class M_pilihmeja extends CI_Model {
 		return $query;
   }
 }
+
 ?>
