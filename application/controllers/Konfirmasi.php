@@ -30,4 +30,4 @@ class Konfirmasi extends CI_Controller {
     }
   }
 }
- ?>
+?>
