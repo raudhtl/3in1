@@ -10,7 +10,7 @@
 
     }
     function ambil_id_pengunjung($meja, $nama){
-      $query = $this->db->query("select id_pengunjung from pengunjung where nama = '$nama' and nomor_meja = $meja");
+      $query = $this->db->query("select id_pengunjung from pengunjung where nama = '$nama' and nomor_meja = $meja and status=''");
       return $query->row()->id_pengunjung;
     }
   }

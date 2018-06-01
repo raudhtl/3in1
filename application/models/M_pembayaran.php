@@ -3,8 +3,12 @@
 <?php
 class M_pembayaran extends CI_Model {
   function data_menu($meja){
-    $query = $this-> db ->query ("select distinct memesan_makanan.nama_menu, memesan_makanan.no_pesanan, sum(jumlah) as total, harga, memesan_makanan.waktu, pembayaran.status  from pembayaran, memesan_makanan, menu, pengunjung where pembayaran.no_pesanan = memesan_makanan.no_pesanan and pengunjung.id_pengunjung=memesan_makanan.id_pengunjung IN (select id_pengunjung from pengunjung where nomor_meja = $meja  and pengunjung.status='') and menu.nama_menu=memesan_makanan.nama_menu group by memesan_makanan.nama_menu");
+    $query = $this-> db ->query ("select distinct memesan_makanan.nama_menu, pembayaran.status, memesan_makanan.no_pesanan, sum(jumlah) as total, harga, memesan_makanan.waktu, pembayaran.status  from pembayaran, memesan_makanan, menu, pengunjung where pembayaran.no_pesanan = memesan_makanan.no_pesanan and pengunjung.id_pengunjung=memesan_makanan.id_pengunjung and pengunjung.id_pengunjung IN (select id_pengunjung from pengunjung where nomor_meja = $meja  and pengunjung.status='') and menu.nama_menu=memesan_makanan.nama_menu group by memesan_makanan.nama_menu");
     return $query->result();
+  }
+  function lihat_status($meja){
+    $query = $this-> db ->query ("select pembayaran.status from memesan_makanan, pembayaran,pengunjung where nomor_meja=$meja and pembayaran.no_pesanan = memesan_makanan.no_pesanan and pengunjung.id_pengunjung=memesan_makanan.id_pengunjung and pengunjung.status=''");
+    return $query->row()->status;
   }
 
   function waktuPesanan($id){
@@ -19,7 +23,7 @@ class M_pembayaran extends CI_Model {
       $i=1;
 
         $b = $roww['id_pengunjung'];
-        $query = $this-> db ->query ("select distinct memesan_makanan.nama_menu, sum(jumlah) as total, sum(harga) as total_harga from memesan_makanan, pengunjung, menu where pengunjung.id_pengunjung = $b and memesan_makanan.nama_menu = menu.nama_menu and memesan_makanan.id_pengunjung=pengunjung.id_pengunjung group by memesan_makanan.nama_menu");
+        $query = $this-> db ->query ("select distinct memesan_makanan.nama_menu, sum(jumlah) as total,sum(harga) as total_harga from memesan_makanan, pengunjung, menu where pengunjung.id_pengunjung = $b and memesan_makanan.nama_menu = menu.nama_menu and memesan_makanan.id_pengunjung=pengunjung.id_pengunjung group by memesan_makanan.nama_menu");
 
         foreach ($query->result_array() as $row){
           $a = $roww['nama'];

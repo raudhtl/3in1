@@ -154,6 +154,7 @@
 					<div class="t-left">
 						<span class="tit2 t-left">
 							No Meja : <?php echo $this->session->userdata('meja_bayar');?>
+							<?php if($this->session->userdata('status') == TRUE){?><i class ="fa fa-check " style="color:black"></i><?php }?></i>
 						</span><br><br>
 					</div>
             <div class="row">
@@ -190,6 +191,7 @@
                           }?>
                           <tr><td></td>
                               <td style="text-align:right;">Total</td>
+															<td></td>
                               <td style="text-align:right;"><?php echo "Rp. ".$_SESSION["sum"]; ?></td>
                               <td></td>
                           </tr>

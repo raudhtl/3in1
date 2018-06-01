@@ -31,6 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  new WOW().init();
 </script>
 <!-- //animation-effect -->
+</script>
+<!-- //animation-effect -->
 
 <style>
 * {margin: 0; padding: 0;}
@@ -189,8 +191,8 @@ input[type=checkbox]:checked + label {
                    var distance = now - countDownDate;
 
                    var days = Math.floor(distance / (1000 * 60 * 60 * 24 * 6432));
-                   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60 * 6));
+                   var minutes = Math.floor((distance % (1000 * 60 * 60 )) / (1000 * 60));
                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                    document.getElementById("demo-" + no_pesanan).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
@@ -217,31 +219,28 @@ input[type=checkbox]:checked + label {
         return hasil;
       }
     </script>
+</head>
 <body>
 <div class="header head">
 	<div class="container">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</span></a></h1>
+			<h1><a href="dashboard"><span>3IN1</span></a></h1>
 		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon" style="padding-top:40px;"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a  href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a   href="blog.html">Blog</a></li>
-						<li><a class="active" href="typo.html">Codes</a></li>
-						<li><a  href="events.html">Events</a></li>
-						<li><a  href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
+    <div class="nav-icon" style="padding-top:25px;">
+      <a href="#" class="navicon"></a>
+        <div class="toggle">
+          <ul class="toggle-menu">
+            <li><a  href="dashboard">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+          </ul>
+        </div>
+      <script>
+      $('.navicon').on('click', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('navicon--active');
+        $('.toggle').toggleClass('toggle--active');
+      });
+      </script>
     </div>
     <div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
@@ -255,6 +254,7 @@ input[type=checkbox]:checked + label {
 	<!-- start search-->
 
 </div>
+<!--content-->
 	<!--content-->
 	<div class="container">
 	<div class="page">
@@ -297,8 +297,16 @@ input[type=checkbox]:checked + label {
 
     </table>
 
-<a href='Pilih_meja'><button type="button" class="btn btn-lg btn-info">Selesai</button></a>
-<button type="button" class="btn btn-lg btn-info">Panggil Pelayan</button>
+<br><br>
+<form method="post" action="Konfirmasi/pilih" class="form-inline">
+<a href='Pilih_meja'><button type="button" class="btn btn-lg btn-info"
+  style="width:200px;">Selesai</button></a>
+
+<button type="submit" value="3" class="btn btn-lg btn-info" name="pilih"
+  style=" width:200px; margin-left:720px;">
+         Panggil Pelayan
+     </button>
+</form>
 
     </div>
   </div>
