@@ -32,6 +32,7 @@ class Pilih_meja extends CI_Controller{
           $this->session->set_userdata('no_meja',$pilihan);
   				redirect('Identitas');
   		}
+		
       else {
   				$url=base_url();
       		echo $this->session->set_flashdata('message','Username Atau Password Salah');
