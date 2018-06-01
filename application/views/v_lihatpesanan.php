@@ -156,6 +156,7 @@
                             <th style="text-align:right;">Menu</th>
                             <th style="text-align:right;">Jumlah</th>
                             <th style="text-align:right;">Harga</th>
+														<th style="text-align:right;">Hapus</th>
                           </tr>
 
                         <tbody>
@@ -178,6 +179,16 @@
                             <td style="text-align:right;"><?php echo $base[$name['nama']]['nama_menuu'.$i];?></td>
                             <td style="text-align:right;"><?php echo $base[$name['nama']]['jumlahh'.$i];?></td>
                             <td style="text-align:right;"><?php echo $base[$name['nama']]['hargaa'.$i];?></td>
+														<td style="text-align:right;">
+																<form action="PilihMenu/hapus" method = "post">
+																	<input class="input100" type="text" name="name_menu" value="<?php echo $base[$name['nama']]['nama_menuu'.$i];?>" style="visibility:hidden; width:0px;">
+																	<div class="btn btn-primary a-btn-slide-text" style="height:30px;">
+																	<button name="name" value="<?php echo $name['nama']?>" type="submit">
+																	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		        											<span><strong>Delete</strong></span></button>
+																	</div>
+																</form>
+														</td>
                           </tr>
 													<?php
 												}
@@ -203,7 +214,7 @@
             <div class="col-md-4">
               <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
 								<form action="PilihMenu/tambah" method = "post">
-              <button name="tambah" value="<?php echo $name['nama']?>" type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Tambah Pesanan</button>
+              <button name="tambah" value="<?php echo $name['nama']?>" type="submit" class="bo-rad-10 sizefull txt10 p-l-20">Tambah Pesanan</button>
 						</form>
 							</div>
             </div>
