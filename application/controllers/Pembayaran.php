@@ -25,9 +25,6 @@ class Pembayaran extends CI_Controller {
 
           $no_meja = $this->session->userdata('meja_bayar');
           $query =  $this-> db ->query ("update pembayaran set bayar = '$uang', kembalian = '$kembalian', status = 'terbayar', metode_bayar='meja' where no_pesanan IN (select no_pesanan from memesan_makanan, pengunjung where pengunjung.id_pengunjung = memesan_makanan.id_pengunjung and pengunjung.nomor_meja = $no_meja )");
-          $this->M_pembayaran->update_jumlah_pengunjung($this->session->userdata('meja_bayar'));
-          $this->M_pembayaran->update_status($this->session->userdata('meja_bayar'));
-          $this->session->unset_userdata('no_meja', 'meja_bayar');
           redirect('Pembayaran');
     } else {
       $nama = $this->input->post('metode');
@@ -36,23 +33,18 @@ class Pembayaran extends CI_Controller {
       $total_pengunjung = $this->M_pembayaran->ambil_jumlah_pengunjung($this->session->userdata('meja_bayar'));
       $uang = $this->input->post('uang');
       $kembalian = $uang - $total_harga;
-      $data = array( 'bayar' => $uang,
-                    'kembalian' => $kembalian,
-                    'status' => 'terbayar',
-                    'metode_bayar' => 'sendiri'
-      );
-      $jumlah = $this->session->userdata('jumlah_pengunjung');
-      $this->session->unset_userdata('jumlah_pengunjung');
-      $this->session->set_userdata('jumlah_pengunjung', ++$jumlah);
       $no_meja = $this->session->userdata('meja_bayar');
       $query =  $this-> db ->query ("update pembayaran set bayar = '$uang', kembalian = '$kembalian', status = 'terbayar', metode_bayar='sendiri' where no_pesanan IN (select no_pesanan from memesan_makanan, pengunjung where pengunjung.id_pengunjung = memesan_makanan.id_pengunjung and pengunjung.nomor_meja = $no_meja and pengunjung.nama='$nama')");
-      if($jumlah == $total_pengunjung){
-        $this->M_pembayaran->update_jumlah_pengunjung($this->session->userdata('meja_bayar'));
-        $this->M_pembayaran->update_status($this->session->userdata('meja_bayar'));
-        $this->session->unset_userdata('no_meja', 'meja_bayar', 'jumlah_pengunjung');
-      }
       redirect('BayarOrang');
     }
+  }
+  function selesai(){
+    $this->load->model('M_pembayaran');
+    $this->M_pembayaran->update_jumlah_pengunjung($this->session->userdata('meja_bayar'));
+    $this->M_pembayaran->update_status($this->session->userdata('meja_bayar'));
+    $this->session->unset_userdata('no_meja', 'meja_bayar');
+    $this->M_pembayaran->update_status_pengunjung($this->session->userdata('meja_bayar'));
+    redirect('Pilih_meja');
   }
 }
  ?>

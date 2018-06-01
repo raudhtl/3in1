@@ -37,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -79,6 +80,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/vendor/lightbox2/css/lightbox.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -86,10 +88,7 @@
 
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
-		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -105,45 +104,45 @@
 
 
 <body >
-	<<div class="header head">
-		<div class="container">
-			<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-				<h1><a href="dashboard"><span>3IN1</a></h1>
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+				<a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
 			</div>
-	    <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
-	      <a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
-	    </div>
-	    <?php if ($this->session->userdata('notif') == TRUE) { ?>
-	  <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
-	    <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
-	  </div>
+			<?php if ($this->session->userdata('notif') == TRUE) { ?>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
+		</div>
 	<?php } else { ?>
-	  <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
-	    <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
-	  </div>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
+		</div>
 	<?php } ?>
-	    <div class="nav-icon" style="padding-top:25px;">
-	      <a href="#" class="navicon"></a>
-	        <div class="toggle">
-	          <ul class="toggle-menu">
-	            <li><a  href="dashboard">Home</a></li>
-	            <li><a href="menu.html">Menu</a></li>
-	          </ul>
-	        </div>
-	      <script>
-	      $('.navicon').on('click', function (e) {
-	        e.preventDefault();
-	        $(this).toggleClass('navicon--active');
-	        $('.toggle').toggleClass('toggle--active');
-	      });
-	      </script>
-	    </div>
-	    <div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
-	        <ul class="dropdown-menu" style="margin-top: 50px;">
-	          <li ><a href="Login/logout">Logout</a></li>
-	        </ul>
-	    </div>s
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
+			<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i></span></a>
+					<ul class="dropdown-menu" style="margin-top: 50px;">
+						<li ><a href="Login/logout">Logout</a></li>
+					</ul>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -160,11 +159,7 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="row" id="templatealamat1" >
-
-    								<!-- Name -->
-
     								<div class="wrap-inputname size12 bo2 bo-rad-10 p-t-30" style="padding-right:10px; height:auto;">
-
                       <div class="table-responsive">
                       <table class="table">
 
@@ -227,7 +222,11 @@
               </div>
 						</div>
           </div>
-
+					<form action="Pembayaran/selesai" method="post"  >
+								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23 float-r" style="height:50px; width:370px; background-color: #353535; font-weight:500;">
+										 <a href="Pilih_meja"><button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
+								</div>
+							</form>
 						</div>
 
 	</div>

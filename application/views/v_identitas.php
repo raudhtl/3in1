@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>3IN1</title>
+	<title>Reservation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -9,7 +10,7 @@
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?=base_url();?>assets/js2/jquery.min.js"></script>
+	<script src="<?=base_url();?>assets/js/jquery.min.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
 	<link href="<?=base_url();?>assets/css2/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -21,8 +22,8 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/move-top.js"></script>
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/easing.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/move-top.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/easing.js"></script>
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					$(".scroll").click(function(event){
@@ -36,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -84,30 +86,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-	function tampil_alamat(param){
-
-		var i;
-			for(var x=1; x<=10; x++){
-
-				document.getElementById("templatealamat".concat(x)).style.visibility = "hidden";
-
-				}
-			for(i=1; i<=param; i=i+1){
-
-				document.getElementById("templatealamat".concat(i)).style.visibility = "visible";
-			}
-		}
-		var windo = param;
-		$.post('Identitas.php', {variable: windo});
-</script>
-
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
-		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -116,42 +97,40 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-  table{margin:2em 0 0 0; border:1px solid #eee;width:100%; border-collapse: separate;border-spacing:0;}
-  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;}
-  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;}
-  table tr.total td{font-size:1.5em;}
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
 
 
 
-<body onload="tampil_alamat(0)">
-	 <div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</a></h1>
-		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="blog.html">Blog</a></li>
-						<li><a  href="typo.html">Codes</a></li>
-						<li><a  href="events.html">Events</a></li>
-						<li><a  href="contact.html">Contact</a></li>
+<body >
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
+			<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i></span></a>
+					<ul class="dropdown-menu" style="margin-top: 50px;">
+						<li ><a href="Login/logout">Logout</a></li>
 					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
-		</div>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -178,9 +157,6 @@
 
 							<div class="col-md-4">
 								<!-- People -->
-								<span class="txt9">
-									People
-								</span>
                 <?php if ($this->session->flashdata('msg_sama') == TRUE) : ?>
                           <div class="alert alert-danger fade in" style="margin-top:15px;">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -194,23 +170,6 @@
                           </div>
                 <?php endif; ?>
 
-								<div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<!-- Select2 -->
-									<select class="selection-1" name="people" onchange="tampil_alamat(this.value)">
-										<option value="0">0 person</option>
-										<option value="1">1 person</option>
-										<option value="2">2 people</option>
-										<option value="3">3 people</option>
-										<option value="4">4 people</option>
-										<option value="5">5 people</option>
-										<option value="6">6 people</option>
-										<option value="7">7 people</option>
-										<option value="8">8 people</option>
-										<option value="9">9 people</option>
-										<option value="10">10 people</option>
-									</select>
-								</div>
-
 							</div>
 
 							<div class="col-md-4">
@@ -219,9 +178,9 @@
 							</div>
 						</div>
               <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat1" style="visibility: hidden;">
+						<div class="row" id="templatealamat1">
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<!-- Name -->
 
 								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -229,213 +188,60 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<!-- Pesan -->
 								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
 									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
 								</div>
 							</div>
-            </form>
+
+							<div class="col-md-4">
+								<!-- lihat pesanan -->
+
+								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
+										<div class="modal fade" id="myModal1" role="dialog">
+											<div class="modal-dialog modal-lg">
+
+											<!-- Modal content-->
+											<div id="wrapshopcart">
+												<h1>Daftar Pesanan Anda</h1>
+
+												<table>
+													<tr><th width="70%">Produk</th><th width="10%">Quantity</th><th width="20%">Jumlah</th></tr>
+
+													<?php foreach($_SESSION['cart'] as $row):?>
+														<?php
+														$jumlah = $_SESSION['price'][$row['productid']] * $row['qty'];
+														$total += $jumlah;
+														?>
+
+														<tr><td><?php echo $row['product'];?></td><td><?php echo $row['qty'];?></td><td><?php echo $jumlah; ?></td></tr>
+													<?php endforeach;?>
+
+													<tr class="total"><td></td><td >Total</td><td><?php echo $total;?></td></tr>
+												</table>
 
 
-
+											</div>
+											</div>
+										</div>
+							</div>
 						</div>
-            <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat2" style="visibility: hidden;">
-							<div class="col-md-6">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-								</div>
-							</div>
             </form>
-
-
-
 						</div>
-                        <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-						<div class="row" id="templatealamat3" style="visibility: hidden;">
-
-							<div class="col-md-6">
-								<!-- Name -->
-
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<!-- Pesan -->
-
-								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-								</div>
-							</div>
-            </form>
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat4" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-      </form>
-
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat5" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-					</div>
-				</div>
-
-
-
-			</div>
-      <form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-			<div class="row" id="templatealamat6" style="visibility: hidden;">
-				<div class="col-md-6">
-					<!-- Name -->
-
-					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<!-- Pesan -->
-
-					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-					</div>
-				</div>
-
-
-</div>
-
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat7" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat8" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20" type="submit">Pesan</button>
-		</div>
-	</div>
-
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat9" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
-<form method="post" action="<?php echo base_url('index.php/Identitas/input'); ?>" >
-<div class="row" id="templatealamat10" style="visibility: hidden;">
-	<div class="col-md-6">
-		<!-- Name -->
-
-		<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Name" >
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<!-- Pesan -->
-
-		<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-			<button class="bo-rad-10 sizefull txt10 p-l-20">Pesan</button>
-		</div>
-	</div>
-
-
-</div>
 
 
 
 			<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
 				<!-- Button3 -->
-				<a href="Konfirmasi"><button type="button" class="btn3 flex-c-m size13 txt11 trans-0-4">
-					Selesai
+					<form method="post" action="Konfirmasi/pilih">
+				<button type="submit" value="2" class="btn3 flex-c-m size20 txt11 trans-0-4" name="pilih">
+									 Panggil Pelayan
+							 </button>
+			</form>
+				<a href="lihatpesanan"><button type="button" class="btn3 flex-c-m size20 txt11 trans-0-4">
+					Lihat Pesanan
 				</button></a>
 			</div>
 		</div>
