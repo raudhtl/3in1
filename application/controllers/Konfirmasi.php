@@ -17,6 +17,7 @@ class Konfirmasi extends CI_Controller {
     if($pilihan == 1){
       redirect ('Identitas');
     }
+	
     else{
       $this->load->model('M_konfirmasi');
   		$jumlah = $this->M_konfirmasi->jumlah($no_meja);
