@@ -1,10 +1,4 @@
 
-  <!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,7 +188,7 @@ input[type=checkbox]:checked + label {
 
                    var distance = now - countDownDate;
 
-                   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                   var days = Math.floor(distance / (1000 * 60 * 60 * 24 * 6432));
                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -213,7 +207,7 @@ input[type=checkbox]:checked + label {
       }
 
       function format(y){
-        var mon=["Jan","Feb","Mar","Apr", "May"];
+        var mon=["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "dec"];
         var tahun=y.substring(0,4);
         var monf=parseInt(y.substring(5,7));
         var bulan = mon[monf-1];
