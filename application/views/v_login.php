@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,10 +66,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="clearfix"></div>
 </div><br><br>
 <!--end header-->
-
-
-
-
 
 <div class="limiter">
   <div class="container-login100" style="background-image: url('images/2.jpg');">

@@ -25,9 +25,7 @@ class Record extends CI_Controller {
 		$this->load->view('v_record', $data);
 	}
 	public function cari(){
-		if($this->input->post('selesai') == 0){
-			redirect('Pilih_meja');
-		}
+
 		$this->load->model('M_record');
 		$pilihan = $this->input->post('berdasarkan');
 		$waktu = $this->input->post('waktu');
@@ -43,6 +41,7 @@ class Record extends CI_Controller {
 			$data['record'] = $this->M_record->cari_record2($waktu, $nomor_meja, $nama);
 		}
 		else{
+			$this->session->set_flashdata('pilihan', TRUE);
 			$data['record'] = $this->M_record->cari_record($waktu);
 		}
 		$this->load->view('v_record', $data);

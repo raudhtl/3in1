@@ -207,7 +207,7 @@ input[type=checkbox]:checked + label {
       }
 
       function format(y){
-        var mon=["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "dec"];
+        var mon=["Jan","Feb","Mar","Apr", "May"];
         var tahun=y.substring(0,4);
         var monf=parseInt(y.substring(5,7));
         var bulan = mon[monf-1];
