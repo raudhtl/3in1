@@ -90,7 +90,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-
+      <?php if ($this->session->flashdata('msg') == TRUE) : ?>
+                <div class="alert alert-danger fade in" style="margin-top:15px; margin-left:20px; margin-right:20px;">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Info!</strong> <?php echo $this->session->flashdata('msg')?>
+                </div>
+      <?php endif; ?>
 
 			<div class="menu-bottom animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
         <?php

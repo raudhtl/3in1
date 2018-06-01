@@ -125,12 +125,6 @@
 				});
 				</script>
 			</div>
-			<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i></span></a>
-					<ul class="dropdown-menu" style="margin-top: 50px;">
-						<li ><a href="Login/logout">Logout</a></li>
-					</ul>
-			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>

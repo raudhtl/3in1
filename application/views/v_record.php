@@ -151,8 +151,65 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 p-b-30">
-            <div class="row">
-              <div class="col-md-8">
+
+						<div class="t-left">
+							<span class="tit2 t-left">
+								Cari Record
+							</span><br><br>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+					<form action="Record/cari" method="post">
+						<div class="form-group"  >
+							<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
+								<input class="bo-rad-10 sizefull txt10 "  type="date" name="waktu" placeholder="Masukkan Waktu" >
+							</div>
+						</div>
+
+					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+						<select class="selection-1" name="people" onchange="tampil_cari(this.value)" placeholder="Cari berdasarkan">
+							<option value="0">Cari berdasarkan</option>
+							<option value="1">Nomor Meja</option>
+							<option value="2">Nomor Meja dan Nama</option>
+						</select>
+					</div>
+										</div>
+
+					<div class="col-md-4">
+					<div class="form-group"  id="templatemeja" style="visibility: hidden;">
+						<select  name="nomor_meja" class="selection-1" placeholder="Cari berdasarkan">
+							<option value="0">Nomor meja</option>
+							<option value="1">Nomor 1</option>
+							<option value="2">Nomor 2</option>
+							<option value="3">Nomor 3</option>
+							<option value="4">Nomor 4</option>
+							<option value="5">Nomor 5</option>
+							<option value="6">Nomor 6</option>
+							<option value="7">Nomor 7</option>
+							<option value="8">Nomor 8</option>
+							<option value="9">Nomor 9</option>
+						</select>
+					</div>
+
+
+					<div class="form-group"  id="templatenama" style="visibility: hidden;">
+						<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
+							<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Masukkan Nama" >
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+							 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" id="nilai" name="berdasarkan">Cari</button>
+					</div>
+					</form>
+					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
+							 <a href="Pilih_meja"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20">Selesai</button></a>
+					</div>
+				</div>
+				</div>
+				<br><br>
+
                 <div class="row" >
 									<?php if($this->session->flashdata('pilihan') == TRUE){ ?>
 										<div class="t-left">
@@ -178,6 +235,7 @@
                             <th style="text-align:right;">Nama</th>
                             <th style="text-align:right;">No Meja</th>
 														<th style="text-align:right;">Menu</th>
+														<th style="text-align:right;">Waktu</th>
 														<th style="text-align:right;">Bayar</th>
 														<th style="text-align:right;">Total Harga</th>
                           </tr>
@@ -198,8 +256,10 @@
 	                            <td style="text-align:right;"><?php echo $b->nama?></td>
 															<td style="text-align:right;"><?php echo $b->nomor_meja?></td>
 															<td style="text-align:right;"><?php echo $b->nama_menu?></td>
+															<td style="text-align:right;"><?php echo $b->waktu?></td>
 															<td style="text-align:right;"><?php echo "Rp. ".$bayar?></td>
 															<td style="text-align:right;"><?php echo "Rp. ".$harga?></td>
+
 	                          </tr>
 														<?php
 													} function total (){
@@ -211,8 +271,8 @@
 															<td></td>
 															<td></td>
 															<td></td>
+															<td></td>
 															<td style="text-align:right;"><?php echo "Rp. ".$_SESSION["sum"]; ?></td>
-                              <td></td>
                           </tr>
                         </tbody>
 
@@ -221,62 +281,7 @@
     								</div>
 
               </div>
-            </div>
-            <div class="col-md-4">
-							<div class="row">
-								<div class="col-md-8">
-								<div class="t-left">
-									<span class="tit2 t-left">
-										Cari Record
-									</span><br><br>
-								</div>
-              <form action="Record/cari" method="post">
-                <div class="form-group"  >
-                  <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                    <input class="bo-rad-10 sizefull txt10 p-l-20"  type="date" name="waktu" placeholder="Masukkan Waktu" >
-                  </div>
-                </div>
-							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-								<select class="selection-1" name="people" onchange="tampil_cari(this.value)" placeholder="Cari berdasarkan">
-									<option value="0">Cari berdasarkan</option>
-									<option value="1">Nomor Meja</option>
-									<option value="2">Nomor Meja dan Nama</option>
-								</select>
-							</div>
-							<form class="form-inline" action="">
-							<div class="form-group"  id="templatemeja" style="visibility: hidden;">
-								<select  name="nomor_meja" class="selection-1" placeholder="Cari berdasarkan">
-									<option value="0">Nomor meja</option>
-									<option value="1">Nomor 1</option>
-									<option value="2">Nomor 2</option>
-									<option value="3">Nomor 3</option>
-									<option value="4">Nomor 4</option>
-									<option value="5">Nomor 5</option>
-									<option value="6">Nomor 6</option>
-									<option value="7">Nomor 7</option>
-									<option value="8">Nomor 8</option>
-									<option value="9">Nomor 9</option>
-								</select>
-							</div>
-							<div class="form-group"  id="templatenama" style="visibility: hidden;">
-								<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									<input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="nama" placeholder="Masukkan Nama" >
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<br><br><br>
-							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" id="nilai" name="berdasarkan">Cari</button>
-							</div>
-							</form>
-							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <a href="Pilih_meja"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20">Selesai</button></a>
-							</div>
-						</div>
-					</div>
-        </div>
-			</div>
+
 	</div>
 </div>
 	</section>

@@ -110,11 +110,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   margin-bottom:20px;
                   background-size:350px;
                   background-image:url('<?=base_url()?>assets/images/koki.jpg')"
-                  <?php 
+                  <?php
                   if($this->session->userdata('koki') != TRUE){?>
                   disabled <?php }?>><br>
-                <div class="captn" <?php if($this->session->userdata('koki') == TRUE){?> style="background-color :#221d11;"<?php }?>>
-                  <h4>Koki</h4><br>
+                <div class="captn">
+                  <h4>Koki  <?php if($this->session->userdata('koki') == TRUE){?><i class ="fa fa-bell fa-spin" style="color:#40c9b4;"><?php }?><br></i></h4><br>
                   <p>Klik Untuk Menghilangkan Notifikasi</p>
                 </div></button>
               </div>
@@ -142,8 +142,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               $no_meja = $b->nomor_meja;
               if($this->session->userdata('no_meja'. $b->nomor_meja) != TRUE){?>
               disabled <?php }?>><br>
-              <div class="captn" <?php if($this->session->userdata('no_meja'. $b->nomor_meja) == TRUE){?> style="background-color :#221d11;"<?php }?>>
-                <h4>Meja Nomor <?php echo $b->nomor_meja?></h4><br>
+              <div class="captn" >
+                <h4>Meja Nomor <?php echo $b->nomor_meja?>  <?php if($this->session->userdata('no_meja'. $b->nomor_meja) == TRUE){?><i class ="fa fa-bell fa-spin" style="color:#40c9b4"><?php }?><br></i></h4><br>
                 <p>Klik Untuk Menghilangkan Notifikasi</p>
               </div>
           </div>

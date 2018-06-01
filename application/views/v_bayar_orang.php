@@ -163,6 +163,7 @@
               <div class="col-md-8   p-t-30">
                   <span class="txt5 t-left p-l-20" >
                     <i class ="fa fa-odnoklassniki">Nama : <?php echo $name['nama']?></i>
+										<?php if($this->session->userdata($name['nama']) == TRUE){?><i class ="fa fa-check " style="color:black"></i><?php }?></i>
                   </span><br><br>
                       <div class="table-responsive" >
                       <table class="table" >

@@ -1,7 +1,7 @@
 <?php
 class M_konfirmasi extends CI_Model {
 	function jumlah($meja){
-    $query = $this-> db ->query ("select * from pengunjung where nomor_meja = $meja");
+    $query = $this-> db ->query ("select * from pengunjung where nomor_meja = $meja and status=''");
     return $query;
   }
   function insert($jumlah, $meja){

@@ -8,6 +8,10 @@ class Pembayaran extends CI_Controller {
     $this->load->database();
     $this->load->model('M_pembayaran');
     $data['bayar'] = $this->M_pembayaran->data_menu($this->session->userdata('meja_bayar'));
+    $status=$this->M_pembayaran->lihat_status($this->session->userdata('meja_bayar'));
+    if($status == 'terbayar'){
+      $this->session->set_flashdata('status', TRUE);
+    }
     $this->load->view('v_pembayaran', $data);
 
   }
@@ -29,8 +33,10 @@ class Pembayaran extends CI_Controller {
     } else {
       $nama = $this->input->post('metode');
       $this->load->model('M_pembayaran');
+      $this->load->model('M_pilih_menu');
       $total_harga = $this->M_pembayaran->total_harga_sendiri($this->session->userdata('meja_bayar'), $nama);
       $total_pengunjung = $this->M_pembayaran->ambil_jumlah_pengunjung($this->session->userdata('meja_bayar'));
+      $this->session->set_userdata($nama, true);
       $uang = $this->input->post('uang');
       $kembalian = $uang - $total_harga;
       $no_meja = $this->session->userdata('meja_bayar');
@@ -40,11 +46,18 @@ class Pembayaran extends CI_Controller {
   }
   function selesai(){
     $this->load->model('M_pembayaran');
+    $meja=$this->session->userdata('meja_bayar');
+    $nama = $this-> db ->query ("select * from pengunjung where nomor_meja=$meja and status=''");
+    $hasil['nama'] = $nama->result_array();
+    foreach($hasil['nama'] as $b){
+      $this->session->unset_userdata($b);
+    }
     $this->M_pembayaran->update_jumlah_pengunjung($this->session->userdata('meja_bayar'));
     $this->M_pembayaran->update_status($this->session->userdata('meja_bayar'));
     $this->session->unset_userdata('no_meja', 'meja_bayar');
     $this->M_pembayaran->update_status_pengunjung($this->session->userdata('meja_bayar'));
     redirect('Pilih_meja');
+
   }
 }
  ?>
