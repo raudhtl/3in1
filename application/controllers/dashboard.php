@@ -1,3 +1,4 @@
+
 <?php
 class dashboard extends CI_Controller {
   function index(){
@@ -11,4 +12,5 @@ class dashboard extends CI_Controller {
 
   }
 }
+
  ?>

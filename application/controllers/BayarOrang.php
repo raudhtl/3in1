@@ -1,3 +1,4 @@
+
 <?php
 class BayarOrang extends CI_Controller {
   function index(){
