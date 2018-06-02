@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -46,7 +47,6 @@ class Record extends CI_Controller {
 	}
 
 	public function cari(){
-
 		$this->load->model('M_record');
 		$pilihan = $this->input->post('berdasarkan');
 		$waktu = $this->input->post('waktu');

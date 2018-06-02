@@ -1,4 +1,3 @@
-
 <?php
 class Login extends CI_Controller{
   function index(){
@@ -44,7 +43,7 @@ class Login extends CI_Controller{
 
 	}
 	function logout (){
-		$this->session->sess_destroy();
+		$this->session->unset_userdata('masuk', 'ses_level', 'ses_username', 'id_pengunjung', 'no_meja');
 		$url=base_url('');
 		redirect('dashboard');
 	}

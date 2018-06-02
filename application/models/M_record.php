@@ -1,3 +1,4 @@
+
 <?php
 class M_record extends CI_Model {
   function record_hari_ini(){

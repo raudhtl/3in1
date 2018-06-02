@@ -51,6 +51,33 @@
 		margin: 0;
 		list-style: none;
 	}
+
+	.button {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 16px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+		cursor: pointer;
+		border-radius: 10px;
+	}
+
+	.button2 {
+		background-color: #353535;
+		color: white;
+		border: 2px solid #353535;
+	}
+
+	.button2:hover {
+		background-color: #eeedec;
+		color: black;
+	}
 	</style>
 
 
@@ -89,6 +116,13 @@
 
 
 	<style type="text/css">
+		.bg1-pattern{
+			background: #97824b;
+		}
+		.txt10{
+			font-weight: 900;
+			color: #353535;
+		}
 
   	#wrapshopcart{
 			margin:3em auto;
@@ -191,54 +225,21 @@
 							</div>
 
 							<div class="col-md-4">
-								<!-- lihat pesanan -->
-
-								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-									 <button type="button" class="bo-rad-10 sizefull txt10 p-l-20" data-toggle="modal" data-target="#myModal1">Lihat Pesanan</button>
-										<div class="modal fade" id="myModal1" role="dialog">
-											<div class="modal-dialog modal-lg">
-
-											<!-- Modal content-->
-											<div id="wrapshopcart">
-												<h1>Daftar Pesanan Anda</h1>
-
-												<table>
-													<tr><th width="70%">Produk</th><th width="10%">Quantity</th><th width="20%">Jumlah</th></tr>
-
-													<?php foreach($_SESSION['cart'] as $row):?>
-														<?php
-														$jumlah = $_SESSION['price'][$row['productid']] * $row['qty'];
-														$total += $jumlah;
-														?>
-
-														<tr><td><?php echo $row['product'];?></td><td><?php echo $row['qty'];?></td><td><?php echo $jumlah; ?></td></tr>
-													<?php endforeach;?>
-
-													<tr class="total"><td></td><td >Total</td><td><?php echo $total;?></td></tr>
-												</table>
-
-
-											</div>
-											</div>
-										</div>
+								<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
+									<a href="lihatpesanan"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20">
+										Lihat Pesanan
+									</button></a>
+								</div>
 							</div>
-						</div>
             </form>
 						</div>
 
-
-
-			<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
-				<!-- Button3 -->
-					<form method="post" action="Konfirmasi/pilih">
-				<button type="submit" value="2" class="btn3 flex-c-m size20 txt11 trans-0-4" name="pilih">
-									 Panggil Pelayan
-							 </button>
-			</form>
-				<a href="lihatpesanan"><button type="button" class="btn3 flex-c-m size20 txt11 trans-0-4">
-					Lihat Pesanan
-				</button></a>
-			</div>
+						<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
+							<!-- Button3 -->
+								<form method="post" action="Konfirmasi/pilih">
+									<button class="button button2" value="2" name="pilih" type="submit">Panggil Pelayan</button>
+								</form>
+						</div>
 		</div>
 	</div>
 </div>

@@ -19,6 +19,7 @@ class M_pembayaran extends CI_Model {
   function data_orang($meja){
     $nama = $this-> db ->query ("select * from pengunjung where nomor_meja=$meja and status!='Nonaktif'");
 
+
     foreach($nama->result_array() as $roww){
       $i=1;
 

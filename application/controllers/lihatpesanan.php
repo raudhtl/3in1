@@ -20,4 +20,3 @@ class lihatpesanan extends CI_Controller {
 
 }
  ?>
->>>>>>> refs/remotes/origin/notifikasi_kasir

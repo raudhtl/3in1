@@ -1,4 +1,5 @@
 
+
 <?php
 class PilihMenu extends CI_Controller{
   function index(){
@@ -44,6 +45,15 @@ class PilihMenu extends CI_Controller{
     var_dump($nama);
     redirect('PilihMenu');
   }
+
+  function hapus(){
+    $this->load->model('M_pilih_menu');
+    $nama =  $this->input->post('name');
+    $nama_menu =  $this->input->post('name_menu');
+    $meja = $this->session->userdata('no_meja');
+    $id_pengunjung = $this->M_pilih_menu->ambil_id_pengunjung($meja, $nama);
+    $this->M_pilih_menu->hapus_data($nama_menu,$id_pengunjung);
+    redirect('lihatpesanan');
+  }
 }
  ?>
->>>>>>> refs/remotes/origin/notifikasi_kasir

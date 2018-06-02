@@ -1,4 +1,3 @@
-
 <?php
 class M_Identitas extends CI_Model {
   function insert($nama, $meja){
