@@ -105,18 +105,7 @@ body, html {
 }
 
 /* ------------------------------------ */
-a {
-	font-family: Montserrat;
-  font-weight: 400;
-	font-size: 15px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-}
+
 
 a:focus {
 	outline: none !important;
@@ -682,9 +671,6 @@ input[type="date" i] {
 
   .social {padding-right: 0px;}
 
-  .logo {
-    height: 45px;
-  }
 }
 
 @media (max-width: 992px) {

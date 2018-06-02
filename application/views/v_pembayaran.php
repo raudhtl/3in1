@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -88,10 +88,7 @@
 
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
-		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -107,28 +104,45 @@
 
 
 <body >
-	 <div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</span></a></h1>
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+				<a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
+			</div>
+			<?php if ($this->session->userdata('notif') == TRUE) { ?>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
 		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="contact.html">Contact</a></li>
+	<?php } else { ?>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
+		</div>
+	<?php } ?>
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
+			<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i></span></a>
+					<ul class="dropdown-menu" style="margin-top: 50px;">
+						<li ><a href="Login/logout">Logout</a></li>
 					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
-		</div>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -140,16 +154,13 @@
 					<div class="t-left">
 						<span class="tit2 t-left">
 							No Meja : <?php echo $this->session->userdata('meja_bayar');?>
+							<?php if($this->session->userdata('status') == TRUE){?><i class ="fa fa-check " style="color:black"></i><?php }?></i>
 						</span><br><br>
 					</div>
             <div class="row">
               <div class="col-md-8">
                 <div class="row" id="templatealamat1" >
-
-    								<!-- Name -->
-
     								<div class="wrap-inputname size12 bo2 bo-rad-10 p-t-30" style="padding-right:10px; height:auto;">
-
                       <div class="table-responsive">
                       <table class="table">
 
@@ -180,6 +191,7 @@
                           }?>
                           <tr><td></td>
                               <td style="text-align:right;">Total</td>
+															<td></td>
                               <td style="text-align:right;"><?php echo "Rp. ".$_SESSION["sum"]; ?></td>
                               <td></td>
                           </tr>
@@ -199,7 +211,7 @@
                   </div>
                 </div>
 							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
+									 <button type="submit" name=metode value='meja' class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
 							</div>
             </form>
               <div class="t-center">
@@ -212,7 +224,11 @@
               </div>
 						</div>
           </div>
-
+					<form action="Pembayaran/selesai" method="post"  >
+								<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23 float-r" style="height:50px; width:370px; background-color: #353535; font-weight:500;">
+										 <a href="Pilih_meja"><button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
+								</div>
+							</form>
 						</div>
 
 	</div>
@@ -247,7 +263,6 @@
 					<div class="col-md-4 footer-bottom  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<h2>Follow Us</h2>
 						<label><i class="glyphicon glyphicon-menu-up"></i></label>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
 						<ul class="social-ic">
 							<li><a href="#"><i></i></a></li>
 							<li><a href="#"><i class="ic"></i></a></li>

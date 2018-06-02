@@ -1,11 +1,4 @@
 
-
-  <!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +38,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
 			<h1><a href="dashboard"><span>3IN1</a></h1>
 		</div>
+    <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+      <a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
+    </div>
     <?php if ($this->session->userdata('notif') == TRUE) { ?>
   <div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
     <a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>

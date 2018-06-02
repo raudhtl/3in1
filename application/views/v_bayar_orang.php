@@ -10,7 +10,7 @@
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?=base_url();?>assets/js2/jquery.min.js"></script>
+	<script src="<?=base_url();?>assets/js/jquery.min.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
 	<link href="<?=base_url();?>assets/css2/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,8 +22,8 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/move-top.js"></script>
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/easing.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/move-top.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/easing.js"></script>
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					$(".scroll").click(function(event){
@@ -37,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -50,6 +51,8 @@
 		list-style: none;
 	}
 	</style>
+
+
 
 <!--===============================================================================================-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -85,10 +88,7 @@
 
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
-		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -97,7 +97,6 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
@@ -105,34 +104,45 @@
 
 
 <body >
-	 <div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</a></h1>
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+				<a href="Record" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-archive fa-2x " style="color:white;"><br></i></span></a>
+			</div>
+			<?php if ($this->session->userdata('notif') == TRUE) { ?>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x fa-spin" style="color:red;"><br></i></span></a>
 		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="contact.html">Contact</a></li>
+	<?php } else { ?>
+		<div style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:21px; padding-bottom:25px;">
+			<a href="Notifikasi" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-bell fa-2x " style="color:white;"><br></i></span></a>
+		</div>
+	<?php } ?>
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
+			<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i></span></a>
+					<ul class="dropdown-menu" style="margin-top: 50px;">
+						<li ><a href="Login/logout">Logout</a></li>
 					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
-		</div>
-		<div class="dropdown" style="margin-top:1.5em; margin-right: 30px; float:right; padding-top:25px; padding-bottom:25px;">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class ="fa fa-user-circle fa-2x"><?php echo $this->session->userdata('ses_username')?><br></i><span class="caret"></span></a>
-				<ul class="dropdown-menu" style="margin-top: 50px;">
-					<li ><a href="Login/logout">Logout</a></li>
-				</ul>
-		</div>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -153,6 +163,7 @@
               <div class="col-md-8   p-t-30">
                   <span class="txt5 t-left p-l-20" >
                     <i class ="fa fa-odnoklassniki">Nama : <?php echo $name['nama']?></i>
+										<?php if($this->session->userdata($name['nama']) == TRUE){?><i class ="fa fa-check " style="color:black"></i><?php }?></i>
                   </span><br><br>
                       <div class="table-responsive" >
                       <table class="table" >
@@ -164,11 +175,14 @@
                           </tr>
 
                         <tbody>
-                          <?php
+													<?php
 
 														$k =$this->session->userdata('i');
 														$_SESSION["sum"] = 0;
-															for($i=1; $i<$k; $i++){
+															for($i=1; ; $i++){
+																if (!isset($base[$name['nama']]['nama_menuu'.$i])){
+																	break;
+																}
 																	 $sum = $base[$name['nama']]['hargaa'.$i]+$_SESSION["sum"];
 																	 unset($_SESSION["sum"]);
 																	 $_SESSION["sum"] = $sum;
@@ -197,26 +211,27 @@
 
               </div>
             </div>
-            <div class="col-md-4">
+						<div class="col-md-4">
               <form action="Pembayaran/bayar" method="post"  >
                 <div class="form-group">
-                  <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23  m-t-74">
+                  <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23  m-t-74">
                     <input class="bo-rad-10 sizefull txt10 p-l-20"  type="text" name="uang" placeholder="Masukkan Uang anda" >
                   </div>
                 </div>
 							<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
-									 <button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
+									 <button type="submit" name=metode value='<?php echo $name['nama']?>' class="bo-rad-10 sizefull txt10 p-l-20" >Bayar Sekarang</button>
 							</div>
             </form>
 						</div>
-
           </div>
 				<?php } ?>
 
 			</div><br><br>
+			<form action="Pembayaran/selesai" method="post"  >
 						<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23 float-r" style="height:50px; width:370px; background-color: #353535; font-weight:500;">
-								 <a href="Pilih_meja"><button type="button" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
+								 <a href="Pilih_meja"><button type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Selesai</button></a>
 						</div>
+					</form>
 
 	</div>
 </div>

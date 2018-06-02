@@ -31,8 +31,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  new WOW().init();
 </script>
 <!-- //animation-effect -->
+<style>
+h1 {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 300;
+  margin-top: 0;
+}
 
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #e6e6e6;
+}
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #ccc;
+}
+.control input:checked ~ .control__indicator {
+  background: #2aa1c0;
+}
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: #0e647d;
+}
+.control input:disabled ~ .control__indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.control--checkbox .control__indicator:after {
+  left: 8px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #7b7b7b;
+}
+.control--radio .control__indicator:after {
+  left: 7px;
+  top: 7px;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+.control--radio input:disabled ~ .control__indicator:after {
+  background: #7b7b7b;
+}
+/*batas*/
+.quantity {
+  position: relative;
+}
 
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.quantity input {
+  width: 150px;
+  height: 30px;
+  line-height: 1.65;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  border: 1px solid #eee;
+}
+
+.quantity input:focus {
+  outline: 0;
+}
+
+.quantity-nav {
+  float: left;
+  position: relative;
+  height: 42px;
+}
+</style>
 
 </head>
 <body>
@@ -95,17 +203,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="pesan" style="background: linear-gradient(#97824b,  #ddd4bb); ">
             <form role="form" id="formfield" action="<?php echo base_url('index.php/Pilih_meja/pilih'); ?>" method="post"  enctype="multipart/form-data" onsubmit="return validateForm();">
               <input type="hidden" name="action" value="add_form" />
-                <div class="form-group">
-                  <input type="number" disabled value=null id="<?php echo "jumlah".$loop?>" data-target="#yModal" name="jumlahh"><br>
-                </div>
-                <div class="form-group">
-                  <input type="hidden" value= 1 id="<?php echo "menu".$loop?>" data-target="#yModal" name="jumlahh"><br>
-                </div>
-                <div class="form-group">
-                <div class="checkbox">
-                  <label><input type="checkbox" onclick="myFunction('<?php echo "jumlah".$loop?>', '<?php echo "menu".$loop?>', '<?php echo $b->nama_menu?>')">Pilih</label>
-                </div>
-                </div>
+                <div class="quantity">
+                <input type="number" min="0"`` disabled value=null id="<?php echo "jumlah".$loop?>" data-target="#yModal" name="jumlahh"><br>
+              </div>
+              <div class="form-group">
+                <input type="hidden" value= 1 id="<?php echo "menu".$loop?>" data-target="#yModal" name="jumlahh"><br>
+              </div>
+              <div class="control-group">
+              <div class="checkbox">
+                <label class="control control--checkbox">Pilih
+		                <input onclick="myFunction('<?php echo "jumlah".$loop?>', '<?php echo "menu".$loop?>', '<?php echo $b->nama_menu?>')" type="checkbox"/>
+		                  <div class="control__indicator"></div>
+	                   </label>
+              </div>
+              </div>
 
           </div>
       </div>

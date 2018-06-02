@@ -66,10 +66,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div><br><br>
 <!--end header-->
 
-
-
-
-
 <div class="limiter">
   <div class="container-login100" style="background-image: url('images/2.jpg');">
     <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-100">

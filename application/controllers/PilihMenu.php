@@ -26,23 +26,25 @@ class PilihMenu extends CI_Controller{
       }
       redirect('lihatpesanan');
     }else{
-        for($i=0; $i<2; $i++) {
-          $data = array(
-          'nama_menu' => $this->input->post("menu".$i) ,
-          'jumlah' => $this->input->post("jumlah".$i),
-          'id_pengunjung' => $this->session->userdata('id_pengunjung'));
-            $this->db->insert('memesan_makanan', $data);
-      }
-    }
-  }
+      for($i=0; $i<2; $i++) {
+        $data = array(
+        'nama_menu' => $this->input->post("menu".$i) ,
+        'jumlah' => $this->input->post("jumlah".$i),
+        'id_pengunjung' => $this->session->userdata('id_pengunjung'));
+          $this->db->insert('memesan_makanan', $data);
 
+      }
+      redirect('identitas');
+    }
+
+  }
   function tambah (){
     $nama =  $this->input->post('tambah');
     $this->session->set_userdata('nama',$nama);
     var_dump($nama);
     redirect('PilihMenu');
   }
-
+  
   function hapus(){
     $this->load->model('M_pilih_menu');
     $nama =  $this->input->post('name');

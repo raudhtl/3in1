@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>3IN1</title>
+	<title>Reservation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -9,7 +10,7 @@
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?=base_url();?>assets/js2/jquery.min.js"></script>
+	<script src="<?=base_url();?>assets/js/jquery.min.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
 	<link href="<?=base_url();?>assets/css2/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -21,8 +22,8 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/move-top.js"></script>
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/easing.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/move-top.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/easing.js"></script>
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					$(".scroll").click(function(event){
@@ -36,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -50,30 +52,30 @@
 	}
 
 	.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 16px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+		cursor: pointer;
 		border-radius: 10px;
-}
+	}
 
 	.button2 {
-    background-color: #353535;
-    color: white;
-    border: 2px solid #353535;
+		background-color: #353535;
+		color: white;
+		border: 2px solid #353535;
 	}
 
 	.button2:hover {
-    background-color: #eeedec;
-    color: black;
+		background-color: #eeedec;
+		color: black;
 	}
 	</style>
 
@@ -110,31 +112,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!--
-<script type="text/javascript">
-	function tampil_alamat(param){
-
-		var i;
-			for(var x=1; x<=10; x++){
-
-				document.getElementById("templatealamat".concat(x)).style.visibility = "hidden";
-
-				}
-			for(i=1; i<=param; i=i+1){
-
-				document.getElementById("templatealamat".concat(i)).style.visibility = "visible";
-			}
-		}
-		var windo = param;
-		$.post('Identitas.php', {variable: windo});
-</script>-->
 
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
+		.bg1-pattern{
+			background: #97824b;
 		}
+		.txt10{
+			font-weight: 900;
+			color: #353535;
+		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -143,42 +131,34 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-  table{margin:2em 0 0 0; border:1px solid #eee;width:100%; border-collapse: separate;border-spacing:0;}
-  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;}
-  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;}
-  table tr.total td{font-size:1.5em;}
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
 
 
 
-<body onload="tampil_alamat(0)">
-	 <div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</a></h1>
-		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="blog.html">Blog</a></li>
-						<li><a  href="typo.html">Codes</a></li>
-						<li><a  href="events.html">Events</a></li>
-						<li><a  href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
-		</div>
+<body >
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -250,16 +230,15 @@
 									</button></a>
 								</div>
 							</div>
-
             </form>
 						</div>
 
-			<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
-				<!-- Button3 -->
-					<form method="post" action="Konfirmasi/pilih">
-						<button class="button button2" value="2" name="pilih" type="submit">Panggil Pelayan</button>
-					</form>
-			</div>
+						<div class="wrap-btn-booking flex-c-m m-t-6" id="tes">
+							<!-- Button3 -->
+								<form method="post" action="Konfirmasi/pilih">
+									<button class="button button2" value="2" name="pilih" type="submit">Panggil Pelayan</button>
+								</form>
+						</div>
 		</div>
 	</div>
 </div>

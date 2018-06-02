@@ -10,7 +10,7 @@
 	<link href="<?=base_url();?>assets/css2/login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="<?=base_url();?>assets/css2/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<?=base_url();?>assets/js2/jquery.min.js"></script>
+	<script src="<?=base_url();?>assets/js/jquery.min.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
 	<link href="<?=base_url();?>assets/css2/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,8 +22,8 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/move-top.js"></script>
-			<script type="text/javascript" src="<?=base_url();?>assets/js2/easing.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/move-top.js"></script>
+			<script type="text/javascript" src="<?=base_url();?>assets/js/easing.js"></script>
 			<script type="text/javascript">
 				jQuery(document).ready(function($) {
 					$(".scroll").click(function(event){
@@ -37,6 +37,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url();?>assets/css2/component.css" />
 		<!-- animation-effect -->
 	<link href="<?=base_url();?>assets/css2/animate.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js2/wow.min.js"></script>
 	<script>
 	 new WOW().init();
@@ -50,6 +51,8 @@
 		list-style: none;
 	}
 	</style>
+
+
 
 <!--===============================================================================================-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -85,10 +88,7 @@
 
 
 	<style type="text/css">
-  	body{
-			background:#efefef;
-			font-family:arial;
-		}
+
   	#wrapshopcart{
 			margin:3em auto;
 			padding:30px;
@@ -97,7 +97,6 @@
 		}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
   p{font-size:1em;margin:0;}
-
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   </style>
 </head>
@@ -105,29 +104,27 @@
 
 
 <body >
-	 <div class="header head">
-	<div class="container">
-		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h1><a href="index.html"><span>3IN1</a></h1>
-		</div>
-		<div class="nav-icon">
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
-		</div>
-
+	<div class="header head">
+	 <div class="container">
+		 <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms" style="padding-top:18px;">
+			 <h1><a href="dashboard"><span>3IN1</a></h1>
+		 </div>
+			<div class="nav-icon" style="padding-top:25px;">
+				<a href="#" class="navicon"></a>
+					<div class="toggle">
+						<ul class="toggle-menu">
+							<li><a  href="dashboard">Home</a></li>
+							<li><a href="menu.html">Menu</a></li>
+						</ul>
+					</div>
+				<script>
+				$('.navicon').on('click', function (e) {
+					e.preventDefault();
+					$(this).toggleClass('navicon--active');
+					$('.toggle').toggleClass('toggle--active');
+				});
+				</script>
+			</div>
 	<div class="clearfix"></div>
 	</div>
 </div>
@@ -214,7 +211,7 @@
             <div class="col-md-4">
               <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23" style="height:50px;">
 								<form action="PilihMenu/tambah" method = "post">
-              <button name="tambah" value="<?php echo $name['nama']?>" type="submit" class="bo-rad-10 sizefull txt10 p-l-20">Tambah Pesanan</button>
+              <button name="tambah" value="<?php echo $name['nama']?>" type="submit" class="bo-rad-10 sizefull txt10 p-l-20" >Tambah Pesanan</button>
 						</form>
 							</div>
             </div>

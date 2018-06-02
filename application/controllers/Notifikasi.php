@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -29,9 +28,20 @@ class Notifikasi extends CI_Controller {
 	public function remove(){
 		$pilihan=$this->input->post('pilihan');
 		$this->session->unset_userdata('no_meja'.$pilihan);
+		if($pilihan == 'koki'){
+					$this->session->unset_userdata('koki');
+		}
 		for($i=1 ; $i<=9; $i++){
+
+
 			if($this->session->userdata('no_meja'.$i) != TRUE && $i==9){
 					$this->session->unset_userdata('notif');
+			}
+			elseif ($this->session->userdata('no_meja'.$i) != TRUE){
+				continue;
+			}
+			else{
+				break;
 			}
 		}
 		redirect('Notifikasi');

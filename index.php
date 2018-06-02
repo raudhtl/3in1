@@ -274,7 +274,6 @@ switch (ENVIRONMENT)
 		$view_folder = APPPATH.'views';
 	}
 	elseif (is_dir($view_folder))
-	
 	{
 		if (($_temp = realpath($view_folder)) !== FALSE)
 		{

@@ -34,8 +34,8 @@ class Pilih_meja extends CI_Controller{
   		}
       else {
   				$url=base_url();
-      		echo $this->session->set_flashdata('message','Username Atau Password Salah');
-  				echo $pilihan;
+      		echo $this->session->set_flashdata('msg','Password yang anda masukkan salah');
+  				redirect('Pilih_meja');
   		}
     }
     else{
